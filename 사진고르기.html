@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>사진 고르기 — 백승찬 · 임유빈</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#fbf7f1; --panel:#fff; --ink:#4a443d; --ink-soft:#8b8377; --line:#e7ddce;
+    --cover:#c98b7e; --journey:#9aa789; --gallery:#7e9aae;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  body{background:var(--bg);color:var(--ink);font-family:'Gowun Batang','Nanum Myeongjo',serif;line-height:1.6;padding-bottom:120px;}
+
+  /* ===== 헤더 ===== */
+  header{position:sticky;top:0;z-index:20;background:rgba(251,247,241,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+  .head-inner{max-width:1100px;margin:0 auto;padding:18px 20px;}
+  .title{font-family:'Nanum Myeongjo',serif;font-weight:800;font-size:22px;}
+  .title .eng{font-family:'Cormorant Garamond',serif;letter-spacing:.24em;color:var(--cover);font-size:14px;display:block;margin-bottom:2px;}
+  .desc{font-size:13.5px;color:var(--ink-soft);margin-top:6px;word-break:keep-all;}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:12px;font-size:12.5px;color:var(--ink-soft);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block;}
+  .dot.c{background:var(--cover);} .dot.j{background:var(--journey);} .dot.g{background:var(--gallery);}
+
+  .bar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .count{font-size:13px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:20px;padding:5px 13px;}
+  .count b{font-weight:700;}
+  .count.c b{color:var(--cover);} .count.j b{color:var(--journey);} .count.g b{color:var(--gallery);}
+  .spacer{flex:1;}
+  button.act{font-family:inherit;font-size:13px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:9px;padding:8px 15px;cursor:pointer;transition:.15s;}
+  button.act:hover{border-color:var(--cover);color:var(--cover);}
+  button.primary{background:var(--ink);color:#fff;border-color:var(--ink);}
+  button.primary:hover{background:#000;color:#fff;}
+
+  /* ===== 그리드 ===== */
+  main{max-width:1100px;margin:0 auto;padding:22px 20px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden;box-shadow:0 8px 22px -16px rgba(74,68,61,.5);}
+  .thumb{position:relative;width:100%;aspect-ratio:2/3;background:#eee;cursor:zoom-in;overflow:hidden;}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease;}
+  .thumb:hover img{transform:scale(1.04);}
+  .fname{font-family:'Cormorant Garamond',serif;font-size:12px;color:var(--ink-soft);text-align:center;padding:7px 0 3px;letter-spacing:.05em;}
+  /* 선택 배지 (썸네일 위) */
+  .badges{position:absolute;top:8px;left:8px;display:flex;gap:5px;}
+  .badge{font-size:11px;font-weight:700;color:#fff;border-radius:6px;padding:3px 7px;font-family:'Gowun Batang',serif;box-shadow:0 2px 6px rgba(0,0,0,.25);}
+  .badge.c{background:var(--cover);} .badge.j{background:var(--journey);} .badge.g{background:var(--gallery);}
+
+  .btns{display:flex;border-top:1px solid var(--line);}
+  .btns button{flex:1;font-family:inherit;border:0;background:#fff;color:var(--ink-soft);font-size:13px;padding:11px 0;cursor:pointer;border-right:1px solid var(--line);transition:.15s;}
+  .btns button:last-child{border-right:0;}
+  .btns button:hover{background:#faf5ee;}
+  .btns button.on.c{background:var(--cover);color:#fff;}
+  .btns button.on.j{background:var(--journey);color:#fff;}
+  .btns button.on.g{background:var(--gallery);color:#fff;}
+
+  /* ===== 하단 요약 ===== */
+  .foot{position:fixed;bottom:0;left:0;right:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);}
+  .foot-inner{max-width:1100px;margin:0 auto;padding:12px 20px;display:flex;gap:16px;align-items:center;font-size:13px;flex-wrap:wrap;}
+  .sel{color:var(--ink-soft);}
+  .sel b{color:var(--ink);}
+  .sel .tag{color:var(--cover);}
+
+  /* ===== 라이트박스 ===== */
+  .lb{position:fixed;inset:0;z-index:50;background:rgba(20,18,16,.9);display:none;align-items:center;justify-content:center;flex-direction:column;padding:24px;}
+  .lb.show{display:flex;}
+  .lb img{max-width:min(92vw,700px);max-height:78vh;border-radius:6px;box-shadow:0 20px 60px rgba(0,0,0,.6);}
+  .lb .cap{color:#fff;margin-top:14px;font-family:'Cormorant Garamond',serif;letter-spacing:.1em;font-size:14px;}
+  .lb .lbtns{display:flex;gap:10px;margin-top:16px;}
+  .lb .lbtns button{font-family:inherit;font-size:14px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:9px;padding:9px 18px;cursor:pointer;transition:.15s;}
+  .lb .lbtns button.c.on,.lb .lbtns button.c:hover{background:var(--cover);border-color:var(--cover);}
+  .lb .lbtns button.j.on,.lb .lbtns button.j:hover{background:var(--journey);border-color:var(--journey);}
+  .lb .lbtns button.g.on,.lb .lbtns button.g:hover{background:var(--gallery);border-color:var(--gallery);}
+  .lb .close{position:absolute;top:18px;right:22px;color:#fff;font-size:30px;cursor:pointer;line-height:1;opacity:.8;}
+  .lb .nav{position:absolute;top:50%;transform:translateY(-50%);color:#fff;font-size:40px;cursor:pointer;opacity:.55;padding:14px;user-select:none;}
+  .lb .nav:hover{opacity:1;} .lb .prev{left:8px;} .lb .next{right:8px;}
+
+  .toast{position:fixed;left:50%;bottom:90px;transform:translate(-50%,20px);background:var(--ink);color:#fff;font-size:13px;padding:11px 20px;border-radius:24px;opacity:0;pointer-events:none;transition:.3s;z-index:99;}
+  .toast.show{opacity:1;transform:translate(-50%,0);}
+
+  @media (max-width:600px){
+    .grid{grid-template-columns:repeat(2,1fr);gap:10px;}
+    .btns button{font-size:12px;padding:9px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-inner">
+    <div class="title"><span class="eng">SELECT OUR PHOTOS</span>사진 고르기</div>
+    <div class="desc">
+      <b>result</b> 폴더의 사진 25장입니다. 각 사진 아래 버튼으로 <b>표지 · 여정 · 갤러리</b>에 담아 보세요.
+      사진을 누르면 크게 볼 수 있어요. 다 고른 뒤 <b>“고른 사진 복사”</b>를 눌러 결과를 전달해 주시면 청첩장에 넣어 드립니다.
+    </div>
+    <div class="legend">
+      <span><i class="dot c"></i>표지 (1장)</span>
+      <span><i class="dot j"></i>여정 (3장 권장 · 순서대로)</span>
+      <span><i class="dot g"></i>갤러리 (여러 장)</span>
+    </div>
+    <div class="bar">
+      <span class="count c">표지 <b id="cnt-c">0</b>/1</span>
+      <span class="count j">여정 <b id="cnt-j">0</b></span>
+      <span class="count g">갤러리 <b id="cnt-g">0</b></span>
+      <span class="spacer"></span>
+      <button class="act" onclick="resetSel()">선택 초기화</button>
+      <button class="act primary" onclick="copyResult()">📋 고른 사진 복사</button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="grid" id="grid"></div>
+</main>
+
+<div class="foot">
+  <div class="foot-inner">
+    <div class="sel"><span class="tag">표지</span> <b id="sel-c">-</b></div>
+    <div class="sel"><span class="tag">여정</span> <b id="sel-j">-</b></div>
+    <div class="sel"><span class="tag">갤러리</span> <b id="sel-g">-</b></div>
+  </div>
+</div>
+
+<!-- 라이트박스 -->
+<div class="lb" id="lb">
+  <span class="close" onclick="closeLb()">×</span>
+  <span class="nav prev" onclick="stepLb(-1)">‹</span>
+  <span class="nav next" onclick="stepLb(1)">›</span>
+  <img id="lb-img" src="" alt="" />
+  <div class="cap" id="lb-cap"></div>
+  <div class="lbtns">
+    <button class="c" onclick="toggle(cur,'cover')">표지로</button>
+    <button class="j" onclick="toggle(cur,'journey')">여정에 담기</button>
+    <button class="g" onclick="toggle(cur,'gallery')">갤러리에 담기</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // result 폴더의 전체 사진 목록
+  const FILES = ["HYE_0001.JPG","HYE_0185.JPG","HYE_0306.JPG","HYE_0345.JPG","HYE_0416.JPG","HYE_0516.JPG","HYE_0535.JPG","HYE_0621.JPG","HYE_0697.JPG","HYE_0897.JPG","HYE_1179.JPG","HYE_1353.JPG","HYE_1437.JPG","HYE_1445.JPG","HYE_1617.JPG","HYE_1707.JPG","HYE_1782.JPG","HYE_1890.JPG","HYE_1925.JPG","HYE_1943.JPG","HYE_1974.JPG","HYE_2040.JPG","HYE_2132.JPG","HYE_2247.JPG","HYE_2329.JPG"];
+  const thumb = (f) => "assets/thumbs/" + f.replace(/\.JPG$/i, ".jpg");
+
+  // 현재 청첩장에 쓰고 있는 사진 (기본 선택값)
+  const DEFAULT = {
+    cover: "HYE_0185.JPG",
+    journey: ["HYE_0516.JPG","HYE_0416.JPG","HYE_0345.JPG"],
+    gallery: ["HYE_0001.JPG","HYE_0306.JPG","HYE_0697.JPG","HYE_1179.JPG","HYE_0897.JPG"],
+  };
+  const KEY = "wedding-photo-pick";
+  let state = load();
+  let cur = null; // 라이트박스에서 보고 있는 파일
+
+  function load(){
+    try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.gallery) return s; }catch(e){}
+    return JSON.parse(JSON.stringify(DEFAULT));
+  }
+  function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+
+  function toggle(f, kind){
+    if(kind === "cover"){
+      state.cover = (state.cover === f) ? null : f;
+    } else {
+      const arr = state[kind];
+      const i = arr.indexOf(f);
+      if(i >= 0) arr.splice(i,1); else arr.push(f);
+    }
+    save(); render();
+    if(document.getElementById("lb").classList.contains("show")) renderLbBtns();
+  }
+
+  function render(){
+    const grid = document.getElementById("grid");
+    grid.innerHTML = FILES.map(f => {
+      const isC = state.cover === f;
+      const jI = state.journey.indexOf(f);
+      const gI = state.gallery.indexOf(f);
+      const badges = [
+        isC ? '<span class="badge c">표지</span>' : '',
+        jI>=0 ? `<span class="badge j">여정 ${jI+1}</span>` : '',
+        gI>=0 ? `<span class="badge g">갤러리 ${gI+1}</span>` : '',
+      ].join('');
+      return `
+      <div class="card">
+        <div class="thumb" onclick="openLb('${f}')">
+          <div class="badges">${badges}</div>
+          <img src="${thumb(f)}" alt="${f}" loading="lazy" />
+        </div>
+        <div class="fname">${f.replace('.JPG','')}</div>
+        <div class="btns">
+          <button class="c ${isC?'on':''}"  onclick="toggle('${f}','cover')">표지</button>
+          <button class="j ${jI>=0?'on':''}" onclick="toggle('${f}','journey')">여정</button>
+          <button class="g ${gI>=0?'on':''}" onclick="toggle('${f}','gallery')">갤러리</button>
+        </div>
+      </div>`;
+    }).join('');
+
+    document.getElementById("cnt-c").textContent = state.cover ? 1 : 0;
+    document.getElementById("cnt-j").textContent = state.journey.length;
+    document.getElementById("cnt-g").textContent = state.gallery.length;
+    const nm = s => s.replace('.JPG','');
+    document.getElementById("sel-c").textContent = state.cover ? nm(state.cover) : "-";
+    document.getElementById("sel-j").textContent = state.journey.length ? state.journey.map(nm).join(", ") : "-";
+    document.getElementById("sel-g").textContent = state.gallery.length ? state.gallery.map(nm).join(", ") : "-";
+  }
+
+  function resetSel(){
+    if(confirm("선택을 모두 지울까요?")){ state = {cover:null, journey:[], gallery:[]}; save(); render(); }
+  }
+
+  /* 라이트박스 */
+  function openLb(f){ cur=f; const lb=document.getElementById("lb");
+    document.getElementById("lb-img").src = thumb(f);
+    document.getElementById("lb-cap").textContent = f.replace('.JPG','');
+    lb.classList.add("show"); renderLbBtns();
+  }
+  function closeLb(){ document.getElementById("lb").classList.remove("show"); }
+  function stepLb(d){ let i=FILES.indexOf(cur); i=(i+d+FILES.length)%FILES.length; openLb(FILES[i]); }
+  function renderLbBtns(){
+    const b = document.querySelectorAll(".lb .lbtns button");
+    b[0].classList.toggle("on", state.cover===cur);
+    b[1].classList.toggle("on", state.journey.includes(cur));
+    b[2].classList.toggle("on", state.gallery.includes(cur));
+  }
+  document.addEventListener("keydown", e=>{
+    if(!document.getElementById("lb").classList.contains("show")) return;
+    if(e.key==="Escape") closeLb();
+    if(e.key==="ArrowLeft") stepLb(-1);
+    if(e.key==="ArrowRight") stepLb(1);
+  });
+  document.getElementById("lb").addEventListener("click", e=>{ if(e.target.id==="lb") closeLb(); });
+
+  /* 결과 복사 */
+  function copyResult(){
+    const t =
+`[사진 선택 결과]
+표지: ${state.cover || "(없음)"}
+여정: ${state.journey.join(", ") || "(없음)"}
+갤러리: ${state.gallery.join(", ") || "(없음)"}`;
+    const done = ()=>toast("복사됐어요! 이 내용을 붙여넣어 전달해 주세요.");
+    if(navigator.clipboard?.writeText){ navigator.clipboard.writeText(t).then(done).catch(()=>fb(t,done)); }
+    else fb(t,done);
+  }
+  function fb(text,cb){ const a=document.createElement("textarea"); a.value=text; a.style.position="fixed"; a.style.opacity="0"; document.body.appendChild(a); a.select(); try{document.execCommand("copy");cb();}catch(e){alert(text);} document.body.removeChild(a); }
+  function toast(m){ const t=document.getElementById("toast"); t.textContent=m; t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),2200); }
+
+  render();
+</script>
+</body>
+</html>

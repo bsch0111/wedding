@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="robots" content="noindex, nofollow" />
+<title>결혼 안내</title>
+<meta id="og-title" property="og:title" content="" />
+<meta id="og-desc" property="og:description" content="" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Gowun+Batang:wght@400;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Parisienne&display=swap" rel="stylesheet" />
+
+<!-- =====================================================================
+  ✏️ 수정은 아래 두 군데만 보시면 됩니다.
+     1) 바로 아래 <script> 안의 CONFIG  → 글 · 사진경로 · 날짜 · 계좌
+     2) <style> 안의 :root            → 색감
+     사진은 assets/cover · assets/journey · assets/gallery 폴더에, GIF는 assets/gif 폴더에 넣으세요.
+====================================================================== -->
+<script>
+const CONFIG = {
+
+  /* 브라우저 탭 / 공유 미리보기 */
+  meta: {
+    title: "백승찬 · 임유빈 결혼 안내",
+    description: "2026년 9월 21일 — 저희 두 사람의 시작을 알립니다.",
+  },
+
+  /* 첫 화면(표지) — image 에 GIF 경로(assets/gif/intro.gif)를 넣으면 움직입니다 */
+  cover: {
+    image: "assets/cover/01.jpg",
+    dateTag: "2026 . 09 . 21",
+    subEng: "WE ARE GETTING MARRIED",
+    namesEng: "Seungchan & Yubin",
+    namesKor: "백승찬 · 임유빈",
+    place: "강릉에서 — 2026년 9월 21일 월요일",
+  },
+
+  /* 인사말 (줄바꿈은 \n) */
+  greeting: {
+    label: "GREETINGS",
+    title: "안녕하세요,\n 백승찬・임유빈 입니다.",
+    paragraphsTop:
+      "각자의 일상에서 서로를 생각해주는 것을 넘어,\n있는 그대로 바라봐주는 연인을 만나,\n앞으로 다가올 길을 같이 동행하며,\n인생의 새로운 장을 시작할 수 있는 배우자를 만나,\n결혼을 하게 되었습니다.",
+    paragraphsBottom:
+      "이 안내장으로 바라봐주시는 모든 분들께\n안녕이 가득하길 바라며,\n함께 축복해주시는 마음에 \n 진심으로 감사를 드립니다.",
+    groomRole: "GROOM", groomName: "백승찬",
+    brideRole: "BRIDE", brideName: "임유빈",
+  },
+
+  /* 여정 (단계 추가/삭제 자유) */
+  journey: {
+    label: "OUR JOURNEY",
+    title: "두 사람이 걸어온 길",
+    subtitle: "예식은 없지만, 잠시 저희의 하루를\n함께 걸어 주시겠어요?",
+    steps: [
+      { no:"moment 01", title:"손 맞잡고, 나란히", image:"assets/journey/01.jpg",
+        desc:"강릉의 초원을 함께 걸으며,\n앞으로의 길을 약속했습니다." },
+      { no:"moment 02", title:"너른 하늘 아래에서", image:"assets/journey/02.jpg",
+        desc:"탁 트인 하늘 아래,\n같은 곳을 바라보았습니다." },
+      { no:"moment 03", title:"가장 가까이에서", image:"assets/journey/03.jpg",
+        desc:"서로의 온기를 느끼며,\n마음을 나누었습니다." },
+      { no:"moment 04", title:"바람이 머무는 언덕에서", image:"assets/journey/04.jpg",
+        desc:"초원을 지나 잠시 멈춰,\n서로를 오래 바라보았습니다." },
+      { no:"moment 05", title:"풀밭에 나란히", image:"assets/journey/05.jpg",
+        desc:"햇살 아래 마주 보며,\n오늘을 오래 기억하기로 했습니다." },
+      { no:"moment 06", title:"마주 보며, 웃으며", image:"assets/journey/06.jpg",
+        desc:"그렇게 서로가 서로에게\n가장 편안한 사람이 되었습니다." },
+    ],
+  },
+
+  /* 갤러리 (첫 사진은 크게, 나머지 2열 / 개수 자유) */
+  gallery: {
+    label: "GALLERY",
+    title: "우리의 순간들",
+    images: [
+      "assets/gallery/01.jpg",
+      "assets/gallery/02.jpg",
+      "assets/gallery/03.jpg",
+      "assets/gallery/04.jpg",
+      "assets/gallery/05.jpg",
+      "assets/gallery/06.jpg",
+      "assets/gallery/07.jpg",
+      "assets/gallery/08.jpg",
+      "assets/gallery/09.jpg",
+      "assets/gallery/10.jpg",
+      "assets/gallery/11.jpg",
+      "assets/gallery/12.jpg",
+      "assets/gallery/13.jpg",
+    ],
+  },
+
+  /* 달력 — 날짜만 바꾸면 자동으로 다시 그려집니다 */
+  calendar: {
+    headline: "구월의\n스물한 번째 날.",
+    year: 2026, month: 9, highlightDay: 21,
+    timeLabel: "강릉", footnote: "月",
+  },
+
+  /* 계좌 */
+  account: {
+    label: "GIFT",
+    title: "마음 전하실 곳",
+    lead: "멀리서도 축하의 마음을\n전하고 싶으신 분들을 위해\n계좌번호를 안내드립니다.",
+    note: "실물 청첩장을 따로 준비하지 못한 점\n너른 마음으로 양해 부탁드립니다.",
+    groups: [
+      { side:"groom", label:"신랑측", members:[
+        { rel:"신랑 아버지", name:"백영현", bank:"국민은행", number:"010-3686-2505" },
+      ]},
+      { side:"bride", label:"신부측", members:[
+        { rel:"신부 아버지", name:"임진수", bank:"국민은행", number:"010-4546-5055" },
+      ]},
+    ],
+  },
+
+  /* 마무리 */
+  footer: {
+    namesEng: "Thank You",
+    thanks: "저희의 시작을 함께해 주셔서\n진심으로 감사합니다.",
+    date: "SEUNGCHAN & YUBIN · 2026.09.21",
+  },
+};
+</script>
+
+<style>
+:root{
+  --bg:#1d1f22;          /* 깊은 차콜 배경 */
+  --bg-soft:#26282c;
+  --panel:#2c2f34;
+  --ink:#e9e4dc;         /* 부드러운 아이보리 글자 */
+  --ink-soft:#a39c92;
+  --line:#3a3d42;
+  --accent:#b4937e;      /* 차분한 토프/로즈브라운 */
+  --accent-soft:#7d6b5e;
+  --groom:#8fa6b3;
+  --bride:#c2998f;
+  --maxw:430px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{scroll-behavior:smooth;}
+body{background:#0e0f10;color:var(--ink);font-family:'Gowun Batang','Nanum Myeongjo',serif;line-height:1.9;letter-spacing:.01em;-webkit-font-smoothing:antialiased;}
+.page{max-width:var(--maxw);margin:0 auto;background:var(--bg);overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,.6);position:relative;}
+section{padding:82px 30px;position:relative;}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 1.3s ease,transform 1.3s ease;}
+.reveal.in{opacity:1;transform:none;}
+
+/* 표지 */
+.cover{height:100svh;min-height:640px;padding:0;display:flex;flex-direction:column;justify-content:space-between;color:#f3efe8;text-align:center;position:relative;overflow:hidden;}
+.cover .bg{position:absolute;inset:0;background-position:center 35%;background-size:cover;background-repeat:no-repeat;animation:kenburns 22s ease-in-out infinite alternate;}
+@keyframes kenburns{from{transform:scale(1.05)}to{transform:scale(1.15)}}
+.cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,12,.55) 0%,rgba(10,11,12,.15) 34%,rgba(10,11,12,.25) 60%,rgba(8,9,10,.82) 100%);}
+.cover .top,.cover .bottom{position:relative;z-index:2;}
+.cover .top{padding:50px 30px 0;}
+.cover .date-tag{font-family:'Cormorant Garamond',serif;letter-spacing:.46em;text-indent:.46em;font-size:15px;font-weight:500;opacity:.95;}
+.cover .top .sub{font-size:12px;letter-spacing:.34em;margin-top:9px;opacity:.82;}
+.cover .bottom{padding:0 30px 58px;}
+.cover .names{font-family:'Parisienne',cursive;font-size:46px;line-height:1.15;text-shadow:0 2px 22px rgba(0,0,0,.55);}
+.cover .kor{margin-top:14px;font-size:17px;letter-spacing:.5em;text-indent:.5em;font-weight:700;}
+.cover .place{margin-top:18px;font-size:13px;letter-spacing:.12em;opacity:.85;}
+.cover .scroll{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:2;width:1px;height:48px;background:rgba(255,255,255,.55);animation:scrollLine 2.4s ease-in-out infinite;}
+@keyframes scrollLine{0%{height:0;opacity:0}40%{height:48px;opacity:1}100%{height:48px;opacity:0;transform:translate(-50%,32px)}}
+
+/* 인사 */
+.greet{text-align:center;background:var(--bg);}
+.label{font-family:'Cormorant Garamond',serif;letter-spacing:.42em;text-indent:.42em;font-size:13px;color:var(--accent);font-weight:500;}
+.ttl{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:26px;line-height:1.55;color:var(--ink);margin:18px 0 28px;}
+.divider{width:36px;height:1px;background:var(--accent-soft);margin:32px auto;}
+.greet p{font-size:15px;color:var(--ink-soft);line-height:2.2;word-break:keep-all;}
+.pair{display:flex;justify-content:center;gap:36px;margin-top:42px;}
+.pair .who{text-align:center;line-height:1.7;}
+.pair .who .role{font-family:'Cormorant Garamond',serif;letter-spacing:.2em;font-size:12px;color:var(--accent);}
+.pair .who .nm{font-size:21px;font-weight:700;color:var(--ink);margin-top:5px;}
+.pair .amp{font-family:'Parisienne',cursive;font-size:30px;color:var(--accent-soft);align-self:center;}
+
+/* 하객석 (앉아 있는 사람들) */
+.aud-caption{margin-top:54px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.14em;color:var(--accent-soft);opacity:.85;}
+.audience{position:relative;margin:18px -30px 0;padding-top:24px;display:flex;flex-direction:column;align-items:center;overflow:hidden;}
+.audience::before{content:"";position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:200px;height:120px;background:radial-gradient(ellipse at center,rgba(180,147,126,.18),transparent 70%);pointer-events:none;}
+.aud-row{display:flex;justify-content:center;align-items:flex-end;gap:7px;}
+.aud-row.r3{transform:scale(.72);opacity:.4;filter:blur(.4px);}
+.aud-row.r2{transform:scale(.87);opacity:.62;margin-top:-20px;}
+.aud-row.r1{transform:scale(1);opacity:.92;margin-top:-22px;z-index:3;}
+.guest{position:relative;width:44px;height:56px;flex:none;}
+.guest .head{position:absolute;left:50%;transform:translateX(-50%);top:0;width:19px;height:20px;border-radius:50% 50% 46% 46%;background:linear-gradient(165deg,#52555c,#191a1d);box-shadow:inset 0 2px 0 rgba(180,147,126,.22);}
+.guest .body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:44px;height:33px;border-radius:22px 22px 7px 7px;background:linear-gradient(170deg,#41444a,#141518);box-shadow:inset 0 2px 0 rgba(180,147,126,.18);}
+.guest:nth-child(2n) .head{width:21px;height:21px;border-radius:48%;}
+.guest:nth-child(3n){transform:translateY(2px);}
+.guest:nth-child(3n) .body{width:42px;}
+
+/* 여정 */
+.journey{background:var(--bg-soft);text-align:center;}
+.journey .intro p{font-size:14px;color:var(--ink-soft);word-break:keep-all;margin-top:14px;}
+.journey .step{margin-top:58px;}
+.journey .step .no{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:.18em;color:var(--accent);}
+.journey .step h3{font-family:'Nanum Myeongjo',serif;font-size:19px;font-weight:700;margin:7px 0 20px;color:var(--ink);}
+.frame{position:relative;border-radius:3px;overflow:hidden;box-shadow:0 22px 46px -24px rgba(0,0,0,.8);}
+.frame img{width:100%;display:block;transition:transform 7s ease;}
+.frame.in img{transform:scale(1.07);}
+.journey .step p{font-size:14.5px;color:var(--ink-soft);margin-top:20px;line-height:2.05;word-break:keep-all;}
+
+/* 갤러리 */
+.gallery{background:var(--bg);text-align:center;}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:36px;}
+.grid .frame img{transition:transform .9s ease;}
+.grid .frame:active img{transform:scale(1.06);}
+.grid .span2{grid-column:span 2;}
+
+/* 달력 */
+.cal{background:var(--bg-soft);}
+.cal .head{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:29px;line-height:1.4;color:var(--accent);}
+.cal table{width:100%;border-collapse:collapse;margin-top:32px;border-top:1px solid var(--accent-soft);border-bottom:1px solid var(--accent-soft);}
+.cal th,.cal td{text-align:center;padding:11px 0;font-size:15px;color:var(--ink);}
+.cal th{font-size:13px;color:var(--ink-soft);padding:16px 0;}
+.cal th.sun,.cal td.sun{color:var(--bride);}
+.cal td .mark{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#1d1f22;font-weight:700;animation:pulse 2.8s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(180,147,126,.4)}50%{box-shadow:0 0 0 11px rgba(180,147,126,0)}}
+.cal .time{display:block;font-size:11px;color:var(--ink-soft);margin-top:6px;letter-spacing:.05em;}
+.cal .dday{text-align:center;margin-top:28px;font-size:14px;color:var(--ink-soft);letter-spacing:.08em;}
+.cal .dday b{color:var(--accent);font-weight:700;}
+
+/* 계좌 */
+.account{background:var(--bg);text-align:center;}
+.account .lead{font-size:15px;color:var(--ink-soft);line-height:2.15;word-break:keep-all;}
+.toggle{margin-top:22px;}
+.acc-item{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-top:12px;overflow:hidden;text-align:left;}
+.acc-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;cursor:pointer;user-select:none;font-size:16px;font-weight:700;}
+.acc-head.groom{color:var(--groom);}
+.acc-head.bride{color:var(--bride);}
+.acc-head .arrow{transition:transform .35s ease;font-size:13px;color:var(--ink-soft);}
+.acc-item.open .arrow{transform:rotate(180deg);}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .45s ease;}
+.acc-item.open .acc-body{max-height:400px;}
+.acc-row{padding:16px 22px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.acc-row .info{line-height:1.6;}
+.acc-row .info .rel{font-size:12px;color:var(--ink-soft);}
+.acc-row .info .name{font-size:15px;font-weight:700;color:var(--ink);margin-top:1px;}
+.acc-row .info .bank{font-size:13.5px;color:var(--ink-soft);margin-top:2px;}
+.copy{flex:none;border:1px solid var(--line);background:var(--bg-soft);color:var(--ink-soft);font-size:12.5px;padding:8px 13px;border-radius:8px;cursor:pointer;font-family:inherit;transition:all .2s ease;}
+.copy:active{background:var(--accent);color:#1d1f22;border-color:var(--accent);}
+
+/* footer */
+.foot{background:var(--bg-soft);text-align:center;padding:64px 30px 76px;}
+.foot .names{font-family:'Parisienne',cursive;font-size:32px;color:var(--accent);}
+.foot .thanks{margin-top:16px;font-size:14px;color:var(--ink-soft);line-height:2;}
+.foot .date{margin-top:24px;font-family:'Cormorant Garamond',serif;letter-spacing:.32em;font-size:12.5px;color:var(--ink-soft);}
+
+/* toast */
+.toast{position:fixed;left:50%;bottom:42px;transform:translate(-50%,20px);background:rgba(233,228,220,.96);color:#1d1f22;font-size:13px;padding:11px 20px;border-radius:24px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:99;letter-spacing:.03em;font-weight:700;}
+.toast.show{opacity:1;transform:translate(-50%,0);}
+
+/* ===== 반응형: 화면 폭에 맞춰 유동 스케일 ===== */
+html,body{overflow-x:hidden;max-width:100%;}
+img{max-width:100%;}
+.page{width:100%;max-width:var(--maxw);}
+section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
+.cover{min-height:520px;}
+.cover .top{padding:clamp(38px,11vw,50px) clamp(20px,6.5vw,30px) 0;}
+.cover .bottom{padding:0 clamp(20px,6.5vw,30px) clamp(44px,13vw,58px);}
+.cover .date-tag{font-size:clamp(13px,3.8vw,15px);}
+.cover .top .sub{font-size:clamp(10.5px,3vw,12px);}
+.cover .names{font-size:clamp(33px,11vw,46px);word-break:break-word;}
+.cover .kor{font-size:clamp(14px,4.4vw,17px);letter-spacing:.42em;text-indent:.42em;}
+.cover .place{font-size:clamp(11px,3.3vw,13px);}
+.ttl{font-size:clamp(21px,6.2vw,26px);}
+.cal .head{font-size:clamp(23px,7.4vw,29px);}
+.cal th,.cal td{font-size:clamp(13px,3.9vw,15px);}
+.cal td .mark{width:clamp(32px,9vw,38px);height:clamp(32px,9vw,38px);}
+.greet p,.account .lead{font-size:clamp(14px,4vw,15px);}
+.acc-head{font-size:clamp(14px,4.3vw,16px);}
+/* 하객석: 좁은 화면에서 넘치지 않도록 */
+.audience{margin-left:calc(-1*clamp(20px,6.5vw,30px));margin-right:calc(-1*clamp(20px,6.5vw,30px));}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- 표지 -->
+  <section class="cover">
+    <div class="bg" id="cover-bg"></div>
+    <div class="veil"></div>
+    <div class="top">
+      <div class="date-tag" id="cover-date"></div>
+      <div class="sub" id="cover-sub"></div>
+    </div>
+    <div class="bottom">
+      <div class="names" id="cover-names"></div>
+      <div class="kor" id="cover-kor"></div>
+      <div class="place" id="cover-place"></div>
+    </div>
+    <div class="scroll"></div>
+  </section>
+
+  <!-- 인사말 -->
+  <section class="greet reveal">
+    <div class="label" id="greet-label"></div>
+    <div class="ttl" id="greet-title"></div>
+    <p id="greet-top"></p>
+    <div class="divider"></div>
+    <p id="greet-bottom"></p>
+    <div class="pair">
+      <div class="who"><div class="role" id="greet-groom-role"></div><div class="nm" id="greet-groom-name"></div></div>
+      <div class="amp">&amp;</div>
+      <div class="who"><div class="role" id="greet-bride-role"></div><div class="nm" id="greet-bride-name"></div></div>
+    </div>
+    <div class="aud-caption">together with those who join us</div>
+    <div class="audience" id="audience" aria-hidden="true"></div>
+  </section>
+
+  <!-- 여정 -->
+  <section class="journey">
+    <div class="intro reveal">
+      <div class="label" id="journey-label"></div>
+      <div class="ttl" style="margin-bottom:6px;" id="journey-title"></div>
+      <p id="journey-subtitle"></p>
+    </div>
+    <div id="journey-steps"></div>
+  </section>
+
+  <!-- 갤러리 -->
+  <section class="gallery">
+    <div class="reveal">
+      <div class="label" id="gallery-label"></div>
+      <div class="ttl" style="margin-bottom:0;" id="gallery-title"></div>
+    </div>
+    <div class="grid reveal" id="gallery-grid"></div>
+  </section>
+
+  <!-- 달력 -->
+  <section class="cal">
+    <div class="reveal">
+      <div class="head" id="cal-head"></div>
+      <table id="cal-table"></table>
+      <div class="dday" id="cal-dday"></div>
+    </div>
+  </section>
+
+  <!-- 계좌 -->
+  <section class="account">
+    <div class="reveal">
+      <div class="label" id="acc-label"></div>
+      <div class="ttl" id="acc-title"></div>
+      <p class="lead" id="acc-lead"></p>
+      <p class="lead" style="margin-top:20px;font-size:13.5px;" id="acc-note"></p>
+      <div class="toggle" id="acc-toggle"></div>
+    </div>
+  </section>
+
+  <!-- 마무리 -->
+  <footer class="foot reveal">
+    <div class="names" id="foot-names"></div>
+    <div class="thanks" id="foot-thanks"></div>
+    <div class="date" id="foot-date"></div>
+  </footer>
+
+</div>
+
+<div class="toast" id="toast">계좌번호가 복사되었습니다</div>
+
+<script>
+(function () {
+  const C = CONFIG;
+  const nl = (s) => (s || "").replace(/\n/g, "<br/>");
+  const $ = (id) => document.getElementById(id);
+
+  document.title = C.meta.title;
+  $("og-title").setAttribute("content", C.meta.title);
+  $("og-desc").setAttribute("content", C.meta.description);
+
+  const cv = C.cover;
+  $("cover-bg").style.backgroundImage = `url('${cv.image}')`;
+  $("cover-date").textContent = cv.dateTag;
+  $("cover-sub").textContent = cv.subEng;
+  $("cover-names").textContent = cv.namesEng;
+  $("cover-kor").textContent = cv.namesKor;
+  $("cover-place").textContent = cv.place;
+
+  const g = C.greeting;
+  $("greet-label").textContent = g.label;
+  $("greet-title").innerHTML = nl(g.title);
+  $("greet-top").innerHTML = nl(g.paragraphsTop);
+  $("greet-bottom").innerHTML = nl(g.paragraphsBottom);
+  $("greet-groom-role").textContent = g.groomRole;
+  $("greet-groom-name").textContent = g.groomName;
+  $("greet-bride-role").textContent = g.brideRole;
+  $("greet-bride-name").textContent = g.brideName;
+
+  /* 하객석 — 뒤에서 바라본 앉아 있는 사람들 (뒷줄일수록 작고 흐리게) */
+  (function buildAudience(){
+    const rows = [{cls:"r3",n:11},{cls:"r2",n:9},{cls:"r1",n:7}];
+    const guest = '<div class="guest"><span class="head"></span><span class="body"></span></div>';
+    $("audience").innerHTML = rows
+      .map((r) => `<div class="aud-row ${r.cls}">${guest.repeat(r.n)}</div>`)
+      .join("");
+  })();
+
+  const j = C.journey;
+  $("journey-label").textContent = j.label;
+  $("journey-title").textContent = j.title;
+  $("journey-subtitle").innerHTML = nl(j.subtitle);
+  $("journey-steps").innerHTML = j.steps.map((s) => `
+      <div class="step reveal">
+        <div class="no">${s.no}</div>
+        <h3>${s.title}</h3>
+        <div class="frame"><img src="${s.image}" alt="${s.title}" loading="lazy" /></div>
+        <p>${nl(s.desc)}</p>
+      </div>`).join("");
+
+  const ga = C.gallery;
+  $("gallery-label").textContent = ga.label;
+  $("gallery-title").textContent = ga.title;
+  $("gallery-grid").innerHTML = ga.images.map((src, i) =>
+    `<div class="frame${i === 0 ? " span2" : ""}"><img src="${src}" alt="갤러리 ${i + 1}" loading="lazy" /></div>`).join("");
+
+  const cal = C.calendar;
+  $("cal-head").innerHTML = nl(cal.headline);
+  buildCalendar(cal);
+  const weekday = ["일","월","화","수","목","금","토"][new Date(cal.year, cal.month - 1, cal.highlightDay).getDay()];
+  $("cal-dday").innerHTML = `${cal.year}. ${String(cal.month).padStart(2,"0")}. ${String(cal.highlightDay).padStart(2,"0")} <b>·</b> ${cal.footnote || weekday}`;
+
+  function buildCalendar(cal) {
+    const first = new Date(cal.year, cal.month - 1, 1).getDay();
+    const days = new Date(cal.year, cal.month, 0).getDate();
+    let html = "<tr>" + ["일","월","화","수","목","금","토"].map((d,i)=>`<th class="${i===0?"sun":""}">${d}</th>`).join("") + "</tr>";
+    let cells = [];
+    for (let i=0;i<first;i++) cells.push("");
+    for (let d=1;d<=days;d++) cells.push(d);
+    while (cells.length % 7 !== 0) cells.push("");
+    for (let w=0; w<cells.length/7; w++){
+      html += "<tr>";
+      for (let i=0;i<7;i++){
+        const d = cells[w*7+i];
+        const sun = i===0 ? " sun" : "";
+        if (d === cal.highlightDay){
+          html += `<td class="day${sun}"><span class="mark">${d}</span>${cal.timeLabel?`<span class="time">${cal.timeLabel}</span>`:""}</td>`;
+        } else {
+          html += `<td class="${sun.trim()}">${d}</td>`;
+        }
+      }
+      html += "</tr>";
+    }
+    $("cal-table").innerHTML = html;
+  }
+
+  const a = C.account;
+  $("acc-label").textContent = a.label;
+  $("acc-title").textContent = a.title;
+  $("acc-lead").innerHTML = nl(a.lead);
+  $("acc-note").innerHTML = nl(a.note);
+  $("acc-toggle").innerHTML = a.groups.map((grp) => `
+      <div class="acc-item">
+        <div class="acc-head ${grp.side}" onclick="toggleAcc(this)">
+          <span>${grp.label}</span><span class="arrow">▾</span>
+        </div>
+        <div class="acc-body">
+          ${grp.members.map((m) => `
+            <div class="acc-row">
+              <div class="info">
+                <div class="rel">${m.rel}</div>
+                <div class="name">${m.name}</div>
+                <div class="bank">${m.bank} ${m.number}</div>
+              </div>
+              <button class="copy" onclick="copyAcc(event,'${m.number}')">복사</button>
+            </div>`).join("")}
+        </div>
+      </div>`).join("");
+
+  const f = C.footer;
+  $("foot-names").textContent = f.namesEng;
+  $("foot-thanks").innerHTML = nl(f.thanks);
+  $("foot-date").textContent = f.date;
+
+  const io = new IntersectionObserver((es)=>es.forEach((e)=>e.isIntersecting&&e.target.classList.add("in")),{threshold:0.16});
+  document.querySelectorAll(".reveal").forEach((el)=>io.observe(el));
+  const fio = new IntersectionObserver((es)=>es.forEach((e)=>e.isIntersecting&&e.target.classList.add("in")),{threshold:0.3});
+  document.querySelectorAll(".frame").forEach((el)=>fio.observe(el));
+})();
+
+function toggleAcc(head){ head.parentElement.classList.toggle("open"); }
+function copyAcc(ev, text){
+  ev.stopPropagation();
+  const num = text.replace(/[^0-9]/g, "");
+  const toast = () => { const t = document.getElementById("toast"); t.classList.add("show"); setTimeout(()=>t.classList.remove("show"),1600); };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(num).then(toast).catch(()=>fb(num,toast));
+  } else fb(num, toast);
+}
+function fb(text, cb){
+  const ta = document.createElement("textarea");
+  ta.value = text; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); cb(); } catch(e){}
+  document.body.removeChild(ta);
+}
+</script>
+</body>
+</html>

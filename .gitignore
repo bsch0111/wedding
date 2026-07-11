@@ -1,0 +1,6 @@
+# 원본 고화질 사진(사이트에 불필요, 용량 큼) — 로컬에만 보관
+result/
+result.zip
+
+# macOS
+.DS_Store
