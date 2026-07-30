@@ -44,8 +44,8 @@ const CONFIG = {
       "9월 21일, 양가 부모님만 모시는 작은 예식으로\n일상에서 서로를 생각하고, 위하는 마음을 넘어서\n평생 서로를 가까운 곳에서 아껴주며 함께할\n소중한 부부의 인연을 시작하려고 합니다.",
     paragraphsBottom:
       "많은 분들을 초대하지 못하지만\n결혼 안내장을 바라봐주시는 모든 분들께 감사드리며,\n 보내주시는 따듯한 마음을 소중히 간직하도록 하겠습니다.",
-    groomRole: "GROOM", groomName: "백승찬",
-    brideRole: "BRIDE", brideName: "임유빈",
+    groomRole: "GROOM", groomParents: "백영현 · 차미옥", groomRelation: "아들", groomName: "백승찬",
+    brideRole: "BRIDE", brideParents: "임진수 · 최은화", brideRelation: "딸", brideName: "임유빈",
   },
 
   /* 여정 (단계 추가/삭제 자유) */
@@ -94,20 +94,21 @@ const CONFIG = {
   calendar: {
     headline: "구월의\n스물한 번째 날.",
     year: 2026, month: 9, highlightDay: 21,
-    timeLabel: "강릉", footnote: "月",
+    timeLabel: "서울", footnote: "月",
   },
 
   /* 계좌 */
   account: {
     label: "GIFT",
     title: "마음 전하실 곳",
-    lead: "멀리서도 축하의 마음을\n전하고 싶으신 분들을 위해\n계좌번호를 안내드립니다.",
-    note: "실물 청첩장을 따로 준비하지 못한 점\n너른 마음으로 양해 부탁드립니다.",
+    lead: "축하해 주시는 마음만으로도\n저희에겐 큰 선물입니다.\n마음을 전하고 싶으신 분들을 위해\n아래 계좌를 남겨 둡니다.",
     groups: [
       { side:"groom", label:"신랑측", members:[
-        { rel:"신랑 아버지", name:"백영현", bank:"국민은행", number:"010-3686-2505" },
+        { rel:"신랑", name:"백승찬", bank:"국민은행", number:"464402-04-204455" },
+        { rel:"신랑 아버지", name:"백영현", bank:"국민은행", number:"610901-01-174524" },
       ]},
       { side:"bride", label:"신부측", members:[
+        { rel:"신부", name:"임유빈", bank:"국민은행", number:"010-4546-5055" },
         { rel:"신부 아버지", name:"임진수", bank:"국민은행", number:"010-4546-5055" },
       ]},
     ],
@@ -115,6 +116,7 @@ const CONFIG = {
 
   /* 마무리 */
   footer: {
+    image: "assets/ending/01.jpg",   // 마무리 사진 (비우면 "" 로)
     namesEng: "Thank You",
     thanks: "저희의 시작을 함께해 주셔서\n진심으로 감사합니다.",
     date: "SEUNGCHAN & YUBIN · 2026.09.21",
@@ -168,25 +170,27 @@ section{padding:82px 30px;position:relative;}
 .divider{width:36px;height:1px;background:var(--accent-soft);margin:32px auto;}
 .greet p{font-size:15px;color:var(--ink-soft);line-height:2.2;word-break:keep-all;}
 .pair{display:flex;justify-content:center;gap:36px;margin-top:42px;}
-.pair .who{text-align:center;line-height:1.7;}
+.pair{gap:28px;}
+.pair .who{text-align:center;line-height:1.6;}
 .pair .who .role{font-family:'Cormorant Garamond',serif;letter-spacing:.2em;font-size:12px;color:var(--accent);}
-.pair .who .nm{font-size:21px;font-weight:700;color:var(--ink);margin-top:5px;}
+.pair .who .par{font-size:12px;color:var(--ink-soft);margin-top:9px;line-height:1.55;word-break:keep-all;}
+.pair .who .nm{font-size:21px;font-weight:700;color:var(--ink);margin-top:4px;}
 .pair .amp{font-family:'Parisienne',cursive;font-size:30px;color:var(--accent-soft);align-self:center;}
 
-/* 하객석 (앉아 있는 사람들) */
+/* 하객석 (앉아 있는 사람들) — 실루엣 뒷모습 */
 .aud-caption{margin-top:54px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.14em;color:var(--accent-soft);opacity:.85;}
-.audience{position:relative;margin:18px -30px 0;padding-top:24px;display:flex;flex-direction:column;align-items:center;overflow:hidden;}
-.audience::before{content:"";position:absolute;left:50%;top:-6px;transform:translateX(-50%);width:200px;height:120px;background:radial-gradient(ellipse at center,rgba(180,147,126,.18),transparent 70%);pointer-events:none;}
-.aud-row{display:flex;justify-content:center;align-items:flex-end;gap:7px;}
-.aud-row.r3{transform:scale(.72);opacity:.4;filter:blur(.4px);}
-.aud-row.r2{transform:scale(.87);opacity:.62;margin-top:-20px;}
-.aud-row.r1{transform:scale(1);opacity:.92;margin-top:-22px;z-index:3;}
-.guest{position:relative;width:44px;height:56px;flex:none;}
-.guest .head{position:absolute;left:50%;transform:translateX(-50%);top:0;width:19px;height:20px;border-radius:50% 50% 46% 46%;background:linear-gradient(165deg,#52555c,#191a1d);box-shadow:inset 0 2px 0 rgba(180,147,126,.22);}
-.guest .body{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:44px;height:33px;border-radius:22px 22px 7px 7px;background:linear-gradient(170deg,#41444a,#141518);box-shadow:inset 0 2px 0 rgba(180,147,126,.18);}
-.guest:nth-child(2n) .head{width:21px;height:21px;border-radius:48%;}
-.guest:nth-child(3n){transform:translateY(2px);}
-.guest:nth-child(3n) .body{width:42px;}
+.audience{position:relative;margin:22px -30px 0;padding-top:30px;display:flex;flex-direction:column;align-items:center;overflow:hidden;}
+.audience::before{content:"";position:absolute;left:50%;top:-10px;transform:translateX(-50%);width:230px;height:150px;background:radial-gradient(ellipse at center,rgba(180,147,126,.20),transparent 70%);pointer-events:none;}
+.aud-row{display:flex;justify-content:center;align-items:flex-end;gap:3px;}
+.aud-row.r4{transform:scale(.60);opacity:.30;filter:blur(.7px);}
+.aud-row.r3{transform:scale(.74);opacity:.44;filter:blur(.4px);margin-top:-16px;}
+.aud-row.r2{transform:scale(.88);opacity:.66;margin-top:-18px;}
+.aud-row.r1{transform:scale(1);opacity:.94;margin-top:-20px;z-index:3;}
+.guest{width:46px;height:60px;flex:none;display:block;fill:url(#gGuest);}
+/* 좌석 높이·크기를 살짝씩 달리해 자연스럽게 */
+.guest:nth-child(2n){transform:translateY(3px) scale(.97);}
+.guest:nth-child(3n){transform:translateY(-2px) scaleX(1.03);}
+.guest:nth-child(5n){transform:translateY(2px) scale(1.02);}
 
 /* 여정 */
 .journey{background:var(--bg-soft);text-align:center;}
@@ -240,7 +244,14 @@ section{padding:82px 30px;position:relative;}
 .copy:active{background:var(--accent);color:#1d1f22;border-color:var(--accent);}
 
 /* footer */
-.foot{background:var(--bg-soft);text-align:center;padding:64px 30px 76px;}
+.foot{position:relative;overflow:hidden;background:var(--bg-soft);text-align:center;padding:78px 30px 180px;}
+/* 마무리 사진 — 두 분을 가운데 은은하게, 위아래로 어둠에 스며들게 */
+.foot .end-bg{position:absolute;inset:0;background-size:cover;background-position:center 46%;opacity:.20;
+  -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 78%,transparent 100%);
+          mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 78%,transparent 100%);
+  transform:scale(1.02);transition:transform 12s ease;}
+.foot.reveal.in .end-bg{transform:scale(1.09);}
+.foot .inner{position:relative;z-index:2;}
 .foot .names{font-family:'Parisienne',cursive;font-size:32px;color:var(--accent);}
 .foot .thanks{margin-top:16px;font-size:14px;color:var(--ink-soft);line-height:2;}
 .foot .date{margin-top:24px;font-family:'Cormorant Garamond',serif;letter-spacing:.32em;font-size:12.5px;color:var(--ink-soft);}
@@ -273,6 +284,28 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
 </style>
 </head>
 <body>
+
+<!-- 하객 실루엣 정의 (머리/목/어깨가 이어지는 뒷모습 · 헤어스타일 4종) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="gGuest" gradientUnits="userSpaceOnUse" x1="50" y1="12" x2="50" y2="120">
+      <stop offset="0" stop-color="#5b5f66"/>
+      <stop offset="0.5" stop-color="#2f3238"/>
+      <stop offset="1" stop-color="#111214"/>
+    </linearGradient>
+    <!-- 공통 어깨+목 -->
+    <path id="gv-sh" d="M4,128 C4,99 19,86 34,82 C40,80 42,74 43,69 L57,69 C58,74 60,80 66,82 C81,86 96,99 96,128 Z"/>
+    <!-- 짧은 머리 -->
+    <g id="gv-short"><use href="#gv-sh"/><ellipse cx="50" cy="50" rx="17" ry="19"/></g>
+    <!-- 묶은 머리(쪽) -->
+    <g id="gv-bun"><use href="#gv-sh"/><ellipse cx="50" cy="32" rx="7.5" ry="6.5"/><ellipse cx="50" cy="51" rx="16" ry="18.5"/></g>
+    <!-- 긴 머리 -->
+    <g id="gv-long"><use href="#gv-sh"/><path d="M31,50 C29,66 31,80 37,86 L63,86 C69,80 71,66 69,50 C69,33 31,33 31,50 Z"/><ellipse cx="50" cy="49" rx="15.5" ry="18"/></g>
+    <!-- 중간(목덜미 머리) -->
+    <g id="gv-mid"><use href="#gv-sh"/><path d="M36,52 C34,64 36,74 41,80 L59,80 C64,74 66,64 64,52 C64,38 36,38 36,52 Z"/><ellipse cx="50" cy="50" rx="16" ry="18"/></g>
+  </defs>
+</svg>
+
 <div class="page">
 
   <!-- 표지 -->
@@ -299,9 +332,9 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
     <div class="divider"></div>
     <p id="greet-bottom"></p>
     <div class="pair">
-      <div class="who"><div class="role" id="greet-groom-role"></div><div class="nm" id="greet-groom-name"></div></div>
+      <div class="who"><div class="role" id="greet-groom-role"></div><div class="par" id="greet-groom-par"></div><div class="nm" id="greet-groom-name"></div></div>
       <div class="amp">&amp;</div>
-      <div class="who"><div class="role" id="greet-bride-role"></div><div class="nm" id="greet-bride-name"></div></div>
+      <div class="who"><div class="role" id="greet-bride-role"></div><div class="par" id="greet-bride-par"></div><div class="nm" id="greet-bride-name"></div></div>
     </div>
     <div class="aud-caption">together with those who join us</div>
     <div class="audience" id="audience" aria-hidden="true"></div>
@@ -348,9 +381,12 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
 
   <!-- 마무리 -->
   <footer class="foot reveal">
-    <div class="names" id="foot-names"></div>
-    <div class="thanks" id="foot-thanks"></div>
-    <div class="date" id="foot-date"></div>
+    <div class="end-bg" id="foot-bg" aria-hidden="true"></div>
+    <div class="inner">
+      <div class="names" id="foot-names"></div>
+      <div class="thanks" id="foot-thanks"></div>
+      <div class="date" id="foot-date"></div>
+    </div>
   </footer>
 
 </div>
@@ -381,16 +417,23 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
   $("greet-top").innerHTML = nl(g.paragraphsTop);
   $("greet-bottom").innerHTML = nl(g.paragraphsBottom);
   $("greet-groom-role").textContent = g.groomRole;
+  $("greet-groom-par").textContent = g.groomParents ? `${g.groomParents}의 ${g.groomRelation}` : "";
   $("greet-groom-name").textContent = g.groomName;
   $("greet-bride-role").textContent = g.brideRole;
+  $("greet-bride-par").textContent = g.brideParents ? `${g.brideParents}의 ${g.brideRelation}` : "";
   $("greet-bride-name").textContent = g.brideName;
 
-  /* 하객석 — 뒤에서 바라본 앉아 있는 사람들 (뒷줄일수록 작고 흐리게) */
+  /* 하객석 — 뒤에서 바라본 앉아 있는 사람들 (헤어스타일 섞어 다양하게, 뒷줄일수록 작고 흐리게) */
   (function buildAudience(){
-    const rows = [{cls:"r3",n:11},{cls:"r2",n:9},{cls:"r1",n:7}];
-    const guest = '<div class="guest"><span class="head"></span><span class="body"></span></div>';
+    const rows = [{cls:"r4",n:15},{cls:"r3",n:13},{cls:"r2",n:11},{cls:"r1",n:9}];
+    const variants = ["short","bun","long","mid","short","long","mid","bun","short","mid","long","short"];
+    let k = 3; // 시작 오프셋(줄마다 패턴이 어긋나게)
+    const guest = () => {
+      const v = variants[k++ % variants.length];
+      return `<svg class="guest" viewBox="0 0 100 128"><use href="#gv-${v}"/></svg>`;
+    };
     $("audience").innerHTML = rows
-      .map((r) => `<div class="aud-row ${r.cls}">${guest.repeat(r.n)}</div>`)
+      .map((r) => { k += 2; return `<div class="aud-row ${r.cls}">${Array.from({length:r.n}, guest).join("")}</div>`; })
       .join("");
   })();
 
@@ -466,6 +509,7 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
       </div>`).join("");
 
   const f = C.footer;
+  if (f.image) $("foot-bg").style.backgroundImage = `url('${f.image}')`;
   $("foot-names").textContent = f.namesEng;
   $("foot-thanks").innerHTML = nl(f.thanks);
   $("foot-date").textContent = f.date;
