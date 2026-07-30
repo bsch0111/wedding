@@ -1,2 +1,13 @@
+# 링크 미리보기용 크롤러는 허용 (카카오톡 등)
+User-agent: kakaotalk-scrap
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# 그 외 검색엔진 등은 차단
 User-agent: *
 Disallow: /
