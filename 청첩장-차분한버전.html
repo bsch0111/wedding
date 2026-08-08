@@ -101,7 +101,7 @@ const CONFIG = {
   calendar: {
     headline: "구월의\n스물한 번째 날.",
     year: 2026, month: 9, highlightDay: 21,
-    timeLabel: "서울", footnote: "月",
+    timeLabel: "", footnote: "月",
   },
 
   /* 계좌 */
@@ -126,7 +126,8 @@ const CONFIG = {
     image: "assets/ending/01.jpg",   // 마무리 사진 (비우면 "" 로)
     namesEng: "Thank You",
     thanks: "저희의 시작을 함께해 주셔서\n진심으로 감사합니다.",
-    date: "SEUNGCHAN & YUBIN · 2026.09.21",
+    date: "SEUNGCHAN & YUBIN",
+    date2: "2026.09.21",
   },
 };
 </script>
@@ -184,21 +185,6 @@ section{padding:82px 30px;position:relative;}
 .pair .who .nm{font-size:21px;font-weight:700;color:var(--ink);margin-top:4px;}
 .pair .amp{font-family:'Parisienne',cursive;font-size:30px;color:var(--accent-soft);align-self:center;}
 
-/* 하객석 (앉아 있는 사람들) — 실루엣 뒷모습 */
-.aud-caption{margin-top:54px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;letter-spacing:.14em;color:var(--accent-soft);opacity:.85;}
-.audience{position:relative;margin:22px -30px 0;padding-top:30px;display:flex;flex-direction:column;align-items:center;overflow:hidden;}
-.audience::before{content:"";position:absolute;left:50%;top:-10px;transform:translateX(-50%);width:230px;height:150px;background:radial-gradient(ellipse at center,rgba(180,147,126,.20),transparent 70%);pointer-events:none;}
-.aud-row{display:flex;justify-content:center;align-items:flex-end;gap:3px;}
-.aud-row.r4{transform:scale(.60);opacity:.30;filter:blur(.7px);}
-.aud-row.r3{transform:scale(.74);opacity:.44;filter:blur(.4px);margin-top:-16px;}
-.aud-row.r2{transform:scale(.88);opacity:.66;margin-top:-18px;}
-.aud-row.r1{transform:scale(1);opacity:.94;margin-top:-20px;z-index:3;}
-.guest{width:46px;height:60px;flex:none;display:block;fill:url(#gGuest);}
-/* 좌석 높이·크기를 살짝씩 달리해 자연스럽게 */
-.guest:nth-child(2n){transform:translateY(3px) scale(.97);}
-.guest:nth-child(3n){transform:translateY(-2px) scaleX(1.03);}
-.guest:nth-child(5n){transform:translateY(2px) scale(1.02);}
-
 /* 여정 */
 .journey{background:var(--bg-soft);text-align:center;}
 .journey .intro p{font-size:14px;color:var(--ink-soft);word-break:keep-all;margin-top:14px;}
@@ -236,8 +222,8 @@ section{padding:82px 30px;position:relative;}
 /* 달력 */
 .cal{background:var(--bg-soft);}
 .cal .head{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:29px;line-height:1.4;color:var(--accent);}
-.cal table{width:100%;border-collapse:collapse;margin-top:32px;border-top:1px solid var(--accent-soft);border-bottom:1px solid var(--accent-soft);}
-.cal th,.cal td{text-align:center;padding:11px 0;font-size:15px;color:var(--ink);}
+.cal table{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:32px;border-top:1px solid var(--accent-soft);border-bottom:1px solid var(--accent-soft);}
+.cal th,.cal td{width:14.2857%;text-align:center;padding:11px 0;font-size:15px;color:var(--ink);}
 .cal th{font-size:13px;color:var(--ink-soft);padding:16px 0;}
 .cal th.sun,.cal td.sun{color:var(--bride);}
 .cal td .mark{display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;background:var(--accent);color:#1d1f22;font-weight:700;animation:pulse 2.8s ease-in-out infinite;}
@@ -267,17 +253,16 @@ section{padding:82px 30px;position:relative;}
 .copy:active{background:var(--accent);color:#1d1f22;border-color:var(--accent);}
 
 /* footer */
-.foot{position:relative;overflow:hidden;background:var(--bg-soft);text-align:center;padding:78px 30px 180px;}
-/* 마무리 사진 — 두 분을 가운데 은은하게, 위아래로 어둠에 스며들게 */
-.foot .end-bg{position:absolute;inset:0;background-size:cover;background-position:center 46%;opacity:.20;
+.foot{position:relative;overflow:hidden;background:var(--bg-soft);text-align:center;padding:120px 30px 260px;min-height:760px;}
+/* 마무리 사진 — 너비 꽉 채우고 위아래로 어둠에 스며들게 */
+.foot .end-bg{position:absolute;inset:0;background-size:cover;background-position:center 40%;background-repeat:no-repeat;opacity:.20;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 78%,transparent 100%);
-          mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 78%,transparent 100%);
-  transform:scale(1.02);transition:transform 12s ease;}
-.foot.reveal.in .end-bg{transform:scale(1.09);}
+          mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 78%,transparent 100%);}
 .foot .inner{position:relative;z-index:2;}
 .foot .names{font-family:'Parisienne',cursive;font-size:32px;color:var(--accent);}
 .foot .thanks{margin-top:16px;font-size:14px;color:var(--ink-soft);line-height:2;}
 .foot .date{margin-top:24px;font-family:'Cormorant Garamond',serif;letter-spacing:.32em;font-size:12.5px;color:var(--ink-soft);}
+.foot .date2{margin-top:8px;font-family:'Cormorant Garamond',serif;letter-spacing:.28em;font-size:13px;color:var(--accent);}
 
 /* toast */
 .toast{position:fixed;left:50%;bottom:42px;transform:translate(-50%,20px);background:rgba(233,228,220,.96);color:#1d1f22;font-size:13px;padding:11px 20px;border-radius:24px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:99;letter-spacing:.03em;font-weight:700;}
@@ -302,32 +287,9 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
 .cal td .mark{width:clamp(32px,9vw,38px);height:clamp(32px,9vw,38px);}
 .greet p,.account .lead{font-size:clamp(14px,4vw,15px);}
 .acc-head{font-size:clamp(14px,4.3vw,16px);}
-/* 하객석: 좁은 화면에서 넘치지 않도록 */
-.audience{margin-left:calc(-1*clamp(20px,6.5vw,30px));margin-right:calc(-1*clamp(20px,6.5vw,30px));}
 </style>
 </head>
 <body>
-
-<!-- 하객 실루엣 정의 (머리/목/어깨가 이어지는 뒷모습 · 헤어스타일 4종) -->
-<svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <defs>
-    <linearGradient id="gGuest" gradientUnits="userSpaceOnUse" x1="50" y1="12" x2="50" y2="120">
-      <stop offset="0" stop-color="#5b5f66"/>
-      <stop offset="0.5" stop-color="#2f3238"/>
-      <stop offset="1" stop-color="#111214"/>
-    </linearGradient>
-    <!-- 공통 어깨+목 -->
-    <path id="gv-sh" d="M4,128 C4,99 19,86 34,82 C40,80 42,74 43,69 L57,69 C58,74 60,80 66,82 C81,86 96,99 96,128 Z"/>
-    <!-- 짧은 머리 -->
-    <g id="gv-short"><use href="#gv-sh"/><ellipse cx="50" cy="50" rx="17" ry="19"/></g>
-    <!-- 묶은 머리(쪽) -->
-    <g id="gv-bun"><use href="#gv-sh"/><ellipse cx="50" cy="32" rx="7.5" ry="6.5"/><ellipse cx="50" cy="51" rx="16" ry="18.5"/></g>
-    <!-- 긴 머리 -->
-    <g id="gv-long"><use href="#gv-sh"/><path d="M31,50 C29,66 31,80 37,86 L63,86 C69,80 71,66 69,50 C69,33 31,33 31,50 Z"/><ellipse cx="50" cy="49" rx="15.5" ry="18"/></g>
-    <!-- 중간(목덜미 머리) -->
-    <g id="gv-mid"><use href="#gv-sh"/><path d="M36,52 C34,64 36,74 41,80 L59,80 C64,74 66,64 64,52 C64,38 36,38 36,52 Z"/><ellipse cx="50" cy="50" rx="16" ry="18"/></g>
-  </defs>
-</svg>
 
 <div class="page">
 
@@ -359,8 +321,6 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
       <div class="amp">&amp;</div>
       <div class="who"><div class="role" id="greet-bride-role"></div><div class="par" id="greet-bride-par"></div><div class="nm" id="greet-bride-name"></div></div>
     </div>
-    <div class="aud-caption">together with those who join us</div>
-    <div class="audience" id="audience" aria-hidden="true"></div>
   </section>
 
   <!-- 여정 -->
@@ -409,6 +369,7 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
       <div class="names" id="foot-names"></div>
       <div class="thanks" id="foot-thanks"></div>
       <div class="date" id="foot-date"></div>
+      <div class="date2" id="foot-date2"></div>
     </div>
   </footer>
 
@@ -453,20 +414,6 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
   $("greet-bride-role").textContent = g.brideRole;
   $("greet-bride-par").textContent = g.brideParents ? `${g.brideParents}의 ${g.brideRelation}` : "";
   $("greet-bride-name").textContent = g.brideName;
-
-  /* 하객석 — 뒤에서 바라본 앉아 있는 사람들 (헤어스타일 섞어 다양하게, 뒷줄일수록 작고 흐리게) */
-  (function buildAudience(){
-    const rows = [{cls:"r4",n:15},{cls:"r3",n:13},{cls:"r2",n:11},{cls:"r1",n:9}];
-    const variants = ["short","bun","long","mid","short","long","mid","bun","short","mid","long","short"];
-    let k = 3; // 시작 오프셋(줄마다 패턴이 어긋나게)
-    const guest = () => {
-      const v = variants[k++ % variants.length];
-      return `<svg class="guest" viewBox="0 0 100 128"><use href="#gv-${v}"/></svg>`;
-    };
-    $("audience").innerHTML = rows
-      .map((r) => { k += 2; return `<div class="aud-row ${r.cls}">${Array.from({length:r.n}, guest).join("")}</div>`; })
-      .join("");
-  })();
 
   const j = C.journey;
   $("journey-label").textContent = j.label;
@@ -544,6 +491,7 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
   $("foot-names").textContent = f.namesEng;
   $("foot-thanks").innerHTML = nl(f.thanks);
   $("foot-date").textContent = f.date;
+  $("foot-date2").textContent = f.date2 || "";
 
   const io = new IntersectionObserver((es)=>es.forEach((e)=>e.isIntersecting&&e.target.classList.add("in")),{threshold:0.16});
   document.querySelectorAll(".reveal").forEach((el)=>io.observe(el));
