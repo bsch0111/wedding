@@ -92,8 +92,8 @@ const CONFIG = {
       "assets/gallery/09.jpg",
       "assets/gallery/10.jpg",
       "assets/gallery/11.jpg",
-      "assets/gallery/12.jpg",
       "assets/gallery/13.jpg",
+      "assets/gallery/12.jpg",
     ],
   },
 
@@ -213,9 +213,25 @@ section{padding:82px 30px;position:relative;}
 /* 갤러리 */
 .gallery{background:var(--bg);text-align:center;}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:36px;}
-.grid .frame img{transition:transform .9s ease;}
+.grid .frame img{transition:transform .9s ease;cursor:zoom-in;}
 .grid .frame:active img{transform:scale(1.06);}
 .grid .span2{grid-column:span 2;}
+
+/* 라이트박스 */
+.lb{position:fixed;inset:0;z-index:200;display:none;background:rgba(20,18,17,.94);
+  align-items:center;justify-content:center;touch-action:none;}
+.lb.open{display:flex;}
+.lb img{max-width:92vw;max-height:86svh;object-fit:contain;border-radius:4px;
+  box-shadow:0 30px 80px -30px rgba(0,0,0,.8);user-select:none;-webkit-user-drag:none;}
+.lb .lb-close{position:absolute;top:16px;right:18px;width:44px;height:44px;border:none;
+  background:none;color:#f4ede2;font-size:30px;line-height:1;cursor:pointer;opacity:.85;}
+.lb .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:72px;
+  border:none;background:none;color:#f4ede2;font-size:38px;cursor:pointer;opacity:.7;user-select:none;}
+.lb .lb-nav:hover,.lb .lb-close:hover{opacity:1;}
+.lb .lb-prev{left:4px;}
+.lb .lb-next{right:4px;}
+.lb .lb-count{position:absolute;bottom:20px;left:0;right:0;text-align:center;
+  color:#f4ede2;font-family:'Cormorant Garamond',serif;letter-spacing:.2em;font-size:13px;opacity:.8;}
 
 /* 달력 */
 .cal{background:var(--bg-soft);}
@@ -400,6 +416,14 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
 
 <div class="toast" id="toast">계좌번호가 복사되었습니다</div>
 
+<div class="lb" id="lightbox" onclick="if(event.target===this)closeLightbox()">
+  <button class="lb-close" onclick="closeLightbox()" aria-label="닫기">&times;</button>
+  <button class="lb-nav lb-prev" onclick="lbStep(-1)" aria-label="이전">&#8249;</button>
+  <img id="lb-img" src="" alt="" />
+  <button class="lb-nav lb-next" onclick="lbStep(1)" aria-label="다음">&#8250;</button>
+  <div class="lb-count" id="lb-count"></div>
+</div>
+
 <script>
 (function () {
   const C = CONFIG;
@@ -460,7 +484,7 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
   $("gallery-label").textContent = ga.label;
   $("gallery-title").textContent = ga.title;
   $("gallery-grid").innerHTML = ga.images.map((src, i) =>
-    `<div class="frame${i === 0 ? " span2" : ""}"><img src="${src}" alt="갤러리 ${i + 1}" loading="lazy" /></div>`).join("");
+    `<div class="frame${(i === 0 || i === ga.images.length - 1) ? " span2" : ""}"><img src="${src}" alt="갤러리 ${i + 1}" loading="lazy" onclick="openLightbox(${i})" /></div>`).join("");
 
   const cal = C.calendar;
   $("cal-head").innerHTML = nl(cal.headline);
@@ -525,6 +549,47 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
   document.querySelectorAll(".reveal").forEach((el)=>io.observe(el));
   const fio = new IntersectionObserver((es)=>es.forEach((e)=>e.isIntersecting&&e.target.classList.add("in")),{threshold:0.3});
   document.querySelectorAll(".frame").forEach((el)=>fio.observe(el));
+})();
+
+/* 갤러리 라이트박스 */
+let lbIndex = 0;
+function openLightbox(i){
+  lbIndex = i;
+  lbRender();
+  const lb = document.getElementById("lightbox");
+  lb.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeLightbox(){
+  document.getElementById("lightbox").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function lbStep(dir){
+  const imgs = CONFIG.gallery.images;
+  lbIndex = (lbIndex + dir + imgs.length) % imgs.length;
+  lbRender();
+}
+function lbRender(){
+  const imgs = CONFIG.gallery.images;
+  document.getElementById("lb-img").src = imgs[lbIndex];
+  document.getElementById("lb-count").textContent = (lbIndex + 1) + " / " + imgs.length;
+}
+document.addEventListener("keydown", (e)=>{
+  if (!document.getElementById("lightbox").classList.contains("open")) return;
+  if (e.key === "Escape") closeLightbox();
+  else if (e.key === "ArrowLeft") lbStep(-1);
+  else if (e.key === "ArrowRight") lbStep(1);
+});
+(function(){
+  let x0 = null;
+  const lb = document.getElementById("lightbox");
+  lb.addEventListener("touchstart", (e)=>{ x0 = e.touches[0].clientX; }, {passive:true});
+  lb.addEventListener("touchend", (e)=>{
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 45) lbStep(dx < 0 ? 1 : -1);
+    x0 = null;
+  }, {passive:true});
 })();
 
 function toggleAcc(head){ head.parentElement.classList.toggle("open"); }
