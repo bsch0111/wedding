@@ -177,6 +177,7 @@ section{padding:82px 30px;position:relative;}
 .ttl{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:26px;line-height:1.55;color:var(--ink);margin:18px 0 28px;}
 .divider{width:36px;height:1px;background:var(--accent-soft);margin:32px auto;}
 .greet p{font-size:15px;color:var(--ink-soft);line-height:2.2;word-break:keep-all;}
+.greet p .gline{display:block;white-space:nowrap;}
 .pair{display:flex;justify-content:center;gap:36px;margin-top:42px;}
 .pair{gap:28px;}
 .pair .who{text-align:center;line-height:1.6;}
@@ -406,8 +407,9 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
   const g = C.greeting;
   $("greet-label").textContent = g.label;
   $("greet-title").innerHTML = nl(g.title);
-  $("greet-top").innerHTML = nl(g.paragraphsTop);
-  $("greet-bottom").innerHTML = nl(g.paragraphsBottom);
+  const glines = (s) => (s || "").split("\n").map((t) => `<span class="gline">${t.trim() || "&nbsp;"}</span>`).join("");
+  $("greet-top").innerHTML = glines(g.paragraphsTop);
+  $("greet-bottom").innerHTML = glines(g.paragraphsBottom);
   $("greet-groom-role").textContent = g.groomRole;
   $("greet-groom-par").textContent = g.groomParents ? `${g.groomParents}의 ${g.groomRelation}` : "";
   $("greet-groom-name").textContent = g.groomName;
@@ -497,6 +499,18 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
   document.querySelectorAll(".reveal").forEach((el)=>io.observe(el));
   const fio = new IntersectionObserver((es)=>es.forEach((e)=>e.isIntersecting&&e.target.classList.add("in")),{threshold:0.3});
   document.querySelectorAll(".frame").forEach((el)=>fio.observe(el));
+
+  /* 인사말 줄이 폭을 넘으면 폰트를 줄여, 기기와 상관없이 동일한 줄바꿈 유지 */
+  function fitGreeting(){
+    document.querySelectorAll(".greet p").forEach((p)=>{
+      p.style.fontSize = "";
+      let fs = parseFloat(getComputedStyle(p).fontSize), guard = 0;
+      while (p.scrollWidth > p.clientWidth + 1 && fs > 9 && guard < 60){ fs -= 0.5; p.style.fontSize = fs + "px"; guard++; }
+    });
+  }
+  fitGreeting();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitGreeting);
+  let rt; window.addEventListener("resize", ()=>{ clearTimeout(rt); rt = setTimeout(fitGreeting, 120); });
 })();
 
 /* 갤러리 라이트박스 */
