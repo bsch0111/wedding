@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex, nofollow" />
+<title>표지 후보 고르기 (내부용)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Parisienne&family=Sacramento&family=Montserrat:wght@400;600;700&family=Nanum+Myeongjo:wght@400;700&family=Gowun+Batang&display=swap" rel="stylesheet" />
+<style>
+  :root{ --ink:#e9e4dc; --dim:#a39c92; --accent:#b4937e; --img:url('assets/cover/01.jpg'); }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#0e0f10;color:var(--ink);font-family:'Gowun Batang','Nanum Myeongjo',serif;padding:34px 0 90px;}
+  .head{text-align:center;padding:10px 24px 26px;}
+  .head h1{font-size:19px;font-weight:700;letter-spacing:.04em;}
+  .head p{font-size:13px;color:var(--dim);margin-top:8px;line-height:1.7;}
+  .grid{display:flex;flex-wrap:wrap;justify-content:center;gap:30px 26px;padding:0 20px;}
+  .cand{width:min(340px,90vw);}
+  .cand .tag{display:flex;align-items:center;justify-content:center;gap:8px;margin:0 0 12px;}
+  .cand .tag b{font-family:'Cormorant Garamond',serif;letter-spacing:.22em;font-size:12px;color:var(--accent);border:1px solid var(--accent);border-radius:20px;padding:4px 13px;}
+  .cand .tag span{font-size:12.5px;color:var(--dim);}
+  /* 공통 카드(사진 프레임) */
+  .card{position:relative;width:100%;aspect-ratio:2/3;border-radius:16px;overflow:hidden;box-shadow:0 24px 60px -28px rgba(0,0,0,.9);}
+  .card .ph{position:absolute;inset:0;background:var(--img) center/cover no-repeat;}
+  .txt{position:absolute;inset:0;z-index:2;}
+
+  /* ===== A. 현재(다크 · 세리프) ===== */
+  .A .card .ph{filter:none;}
+  .A .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,12,.5),rgba(10,11,12,.05) 34%,rgba(8,9,10,.85));}
+  .A .date{position:absolute;top:34px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;letter-spacing:.4em;text-indent:.4em;font-size:14px;color:#f3efe8;}
+  .A .sub{position:absolute;top:60px;left:0;right:0;text-align:center;font-size:10.5px;letter-spacing:.32em;color:#e8e2d8;opacity:.85;}
+  .A .nm{position:absolute;bottom:64px;left:0;right:0;text-align:center;font-family:'Parisienne',cursive;font-size:40px;color:#fff;}
+  .A .kor{position:absolute;bottom:40px;left:0;right:0;text-align:center;font-size:13px;letter-spacing:.4em;text-indent:.4em;color:#f0ece4;}
+
+  /* ===== B. 상단 라이트 · 날짜형 ===== */
+  .B .card{background:#f4f1ea;}
+  .B .card .ph{top:150px;}
+  .B .date{position:absolute;top:44px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;letter-spacing:.06em;color:#4a443d;}
+  .B .day{position:absolute;top:88px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;letter-spacing:.34em;text-indent:.34em;font-size:14px;color:#8b8377;}
+
+  /* ===== C. 에디토리얼 산세리프 ===== */
+  .C .card .ph{filter:saturate(1.05) brightness(.82);}
+  .C .txt{font-family:'Montserrat',sans-serif;color:#fff;}
+  .C .t1{position:absolute;top:40px;left:26px;font-size:30px;font-weight:700;line-height:1;}
+  .C .yr{position:absolute;top:52px;right:24px;font-size:12px;letter-spacing:.12em;}
+  .C .mo{position:absolute;top:78px;left:26px;font-size:11px;letter-spacing:.22em;font-weight:600;}
+  .C .t2{position:absolute;bottom:96px;right:22px;text-align:right;font-size:30px;font-weight:700;line-height:1.02;}
+  .C .day{position:absolute;bottom:70px;left:0;right:0;text-align:center;font-size:11px;letter-spacing:.24em;font-weight:600;}
+  .C .nm{position:absolute;bottom:26px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:center;font-size:15px;letter-spacing:.06em;}
+
+  /* ===== D. Éternel · 크림 웨이브 ===== */
+  .D .card .ph{bottom:150px;}
+  .D .card{background:#efe7dd;}
+  .D .wave{position:absolute;left:0;right:0;bottom:0;height:210px;background:#efe7dd;
+    -webkit-mask:radial-gradient(120% 90% at 50% 100%,#000 68%,transparent 70%);mask:radial-gradient(120% 90% at 50% 100%,#000 68%,transparent 70%);}
+  .D .ttl{position:absolute;bottom:70px;left:0;right:0;text-align:center;font-family:'Playfair Display',serif;font-style:italic;font-weight:600;font-size:52px;color:#b79a92;}
+  .D .nm{position:absolute;bottom:32px;left:24px;right:24px;display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;letter-spacing:.2em;font-size:12px;color:#8a7d74;}
+
+  /* ===== E. 손글씨 오버레이 ===== */
+  .E .card .ph{filter:brightness(.9);}
+  .E .script{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:'Sacramento',cursive;font-size:52px;color:#fff;text-align:center;line-height:.9;text-shadow:0 2px 16px rgba(0,0,0,.4);padding:0 20px;}
+  .E .nm{position:absolute;bottom:58px;left:0;right:0;text-align:center;font-size:15px;letter-spacing:.16em;color:#fff;}
+  .E .date{position:absolute;bottom:34px;left:0;right:0;text-align:center;font-family:'Cormorant Garamond',serif;letter-spacing:.14em;font-size:12.5px;color:#f2eee6;}
+
+  /* ===== F. Getting Married · 스크립트 하단 ===== */
+  .F .card .ph{filter:brightness(.92);}
+  .F .grad{position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.5));}
+  .F .ttl{position:absolute;bottom:70px;left:0;right:0;text-align:center;font-family:'Parisienne',cursive;font-size:46px;color:#fff;line-height:.95;text-shadow:0 2px 14px rgba(0,0,0,.35);}
+  .F .row{position:absolute;bottom:30px;left:24px;right:24px;display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;letter-spacing:.16em;font-size:12.5px;color:#f2eee6;}
+</style>
+</head>
+<body>
+  <div class="head">
+    <h1>표지(첫 화면) 후보</h1>
+    <p>같은 사진에 레이아웃만 다르게 입힌 6개 안이에요.<br/>마음에 드는 <b>알파벳(A~F)</b>만 알려주면 그걸로 확정 적용할게요.</p>
+  </div>
+
+  <div class="grid">
+    <!-- A -->
+    <div class="cand A">
+      <div class="tag"><b>A</b><span>현재 · 다크 세리프</span></div>
+      <div class="card"><div class="ph"></div><div class="veil"></div><div class="txt">
+        <div class="date">2026 . 09 . 21</div>
+        <div class="sub">WE ARE GETTING MARRIED</div>
+        <div class="nm">Seungchan &amp; Yubin</div>
+        <div class="kor">백승찬 · 임유빈</div>
+      </div></div>
+    </div>
+
+    <!-- B -->
+    <div class="cand B">
+      <div class="tag"><b>B</b><span>상단 날짜 · 라이트</span></div>
+      <div class="card"><div class="ph"></div><div class="txt">
+        <div class="date">2026 / 09 / 21</div>
+        <div class="day">MONDAY</div>
+      </div></div>
+    </div>
+
+    <!-- C -->
+    <div class="cand C">
+      <div class="tag"><b>C</b><span>에디토리얼 · 산세리프</span></div>
+      <div class="card"><div class="ph"></div><div class="txt">
+        <div class="t1">The Most</div>
+        <div class="yr">2026</div>
+        <div class="mo">SEPTEMBER</div>
+        <div class="t2">Beautiful<br/>Moment</div>
+        <div class="day">MONDAY · 12:30 PM</div>
+        <div class="nm"><span>백승찬</span><span>↔</span><span>임유빈</span></div>
+      </div></div>
+    </div>
+
+    <!-- D -->
+    <div class="cand D">
+      <div class="tag"><b>D</b><span>Éternel · 크림 웨이브</span></div>
+      <div class="card"><div class="ph"></div><div class="wave"></div><div class="txt">
+        <div class="ttl">Éternel</div>
+        <div class="nm"><span>SEUNGCHAN</span><span>YUBIN</span></div>
+      </div></div>
+    </div>
+
+    <!-- E -->
+    <div class="cand E">
+      <div class="tag"><b>E</b><span>손글씨 오버레이</span></div>
+      <div class="card"><div class="ph"></div><div class="txt">
+        <div class="script">and happily<br/>ever after</div>
+        <div class="nm">승찬 &amp; 유빈</div>
+        <div class="date">2026 . 09 . 21</div>
+      </div></div>
+    </div>
+
+    <!-- F -->
+    <div class="cand F">
+      <div class="tag"><b>F</b><span>Getting Married · 스크립트</span></div>
+      <div class="card"><div class="ph"></div><div class="grad"></div><div class="txt">
+        <div class="ttl">Getting<br/>Married</div>
+        <div class="row"><span>21ST</span><span>SEP</span><span>2026</span></div>
+      </div></div>
+    </div>
+  </div>
+</body>
+</html>
