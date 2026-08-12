@@ -40,17 +40,16 @@ const CONFIG = {
     subEng: "WE ARE GETTING MARRIED",
     namesEng: "Seungchan & Yubin",
     namesKor: "백승찬 · 임유빈",
-    place: "2026년 9월 21일 월요일",
   },
 
   /* 인사말 (줄바꿈은 \n) */
   greeting: {
     label: "GREETINGS",
-    title: "안녕하세요,\n 백승찬・임유빈 입니다.",
+    title: "안녕하세요,\n 백승찬 ・ 임유빈 입니다.",
     paragraphsTop:
-      "9월 21일, 양가 부모님만 모시는 작은 예식으로\n소중한 부부의 인연을 시작하려고 합니다.\n일상에서 서로를 생각하고 위하는 마음을 넘어\n평생 서로를 가까운 곳에서 아끼며 함께하도록 하겠습니다.",
+      "다가오는 9월의 어느 날, 저희 두 사람\n소중한 부부의 인연을 시작하려고 합니다.\n\n눈부신 순간보다 평범한 날들을 채워가고 싶은 저희는\n양가 가족들과 조용하고 따뜻한 예식을 올리려 합니다.\n",
     paragraphsBottom:
-      "많은 분들을 초대하지 못하지만\n결혼 안내장을 바라봐주시는 모든 분들께 감사드리며,\n 보내주시는 따듯한 마음을 소중히 간직하도록 하겠습니다.",
+      "곁에서 아껴주셨던 고마운 분들께 이 소식을 전하며\n함께 기쁨을 나누지 못하는 아쉬운 마음을 작은 글로 대신합니다.\n멀리서 보내주시는 마음을 소중히 간직하도록 하겠습니다.",
     groomRole: "GROOM", groomParents: "백영현 · 차미옥", groomRelation: "아들", groomName: "백승찬",
     brideRole: "BRIDE", brideParents: "임진수 · 최은화", brideRelation: "딸", brideName: "임유빈",
   },
@@ -58,20 +57,20 @@ const CONFIG = {
   /* 여정 (단계 추가/삭제 자유) */
   journey: {
     label: "OUR JOURNEY",
-    title: "두 사람이 걸어온 길",
-    subtitle: "예식은 없지만, 잠시 저희의 하루를\n함께 걸어 주시겠어요?",
+    title: "우리의 어느 날",
+    subtitle: "새로운 시작을 앞둔 저희의 모습을\n잠시 함께 바라봐 주시겠어요?",
     steps: [
-      { no:"moment 01", title:"손 맞잡고, 나란히", image:"assets/journey/01.jpg",
-        desc:"강릉의 초원을 함께 걸으며,\n앞으로의 길을 약속했습니다." },
-      { no:"moment 02", title:"너른 하늘 아래에서", image:"assets/journey/02.jpg",
-        desc:"탁 트인 하늘 아래,\n같은 곳을 바라보았습니다." },
+      { no:"moment 01", title:"푸른 초원 위에서", image:"assets/journey/01.jpg",
+        desc:"드넓은 언덕에 나란히 서서,\n앞으로의 길을 함께하기로 했습니다." },
+      { no:"moment 02", title:"햇살 스민 숲길에서", image:"assets/journey/02.jpg",
+        desc:"따스한 빛이 내려앉은 숲길을,\n서로를 바라보며 나란히 걸었습니다." },
       { no:"moment 03", title:"가장 가까이에서", image:"assets/journey/03.jpg",
         desc:"서로의 온기를 느끼며,\n마음을 나누었습니다." },
-      { no:"moment 04", title:"바람이 머무는 언덕에서", image:"assets/journey/04.jpg",
-        desc:"초원을 지나 잠시 멈춰,\n서로를 오래 바라보았습니다." },
-      { no:"moment 05", title:"풀밭에 나란히", image:"assets/journey/05.jpg",
+      { no:"moment 04", title:"같은 바람 속에서", image:"assets/journey/04.jpg",
+        desc:"잠시 눈을 감은 채 나란히,\n하늘과 바람을 마음에 담았습니다." },
+      { no:"moment 05", title:"햇살에 물들어", image:"assets/journey/05.jpg",
         desc:"햇살 아래 마주 보며,\n오늘을 오래 기억하기로 했습니다." },
-      { no:"moment 06", title:"마주 보며, 웃으며", image:"assets/journey/06.jpg",
+      { no:"moment 06", title:"마주 보며 미소 짓고", image:"assets/journey/06.jpg",
         desc:"그렇게 서로가 서로에게\n가장 편안한 사람이 되었습니다." },
     ],
   },
@@ -85,15 +84,24 @@ const CONFIG = {
       "assets/gallery/02.jpg",
       "assets/gallery/03.jpg",
       "assets/gallery/04.jpg",
-      "assets/gallery/05.jpg",
+      "assets/gallery/05.JPG",
       "assets/gallery/06.jpg",
       "assets/gallery/07.jpg",
       "assets/gallery/08.jpg",
       "assets/gallery/09.jpg",
       "assets/gallery/10.jpg",
       "assets/gallery/11.jpg",
-      "assets/gallery/13.jpg",
       "assets/gallery/12.jpg",
+      "assets/gallery/13.jpg",
+      "assets/gallery/14.jpg",
+      "assets/gallery/15.jpg",
+      "assets/gallery/16.jpg",
+      "assets/gallery/17.jpg",
+      "assets/gallery/18.jpg",
+      "assets/gallery/19.JPG",
+      "assets/gallery/20.jpg",
+      "assets/gallery/21.JPG",
+      "assets/gallery/22-last.jpg",
     ],
   },
 
@@ -156,9 +164,9 @@ section{padding:82px 30px;position:relative;}
 .reveal.in{opacity:1;transform:none;}
 
 /* 표지 */
-.cover{height:100svh;min-height:640px;padding:0;display:flex;flex-direction:column;justify-content:space-between;color:#f3efe8;text-align:center;position:relative;overflow:hidden;}
-.cover .bg{position:absolute;inset:0;background-position:center 35%;background-size:cover;background-repeat:no-repeat;animation:kenburns 22s ease-in-out infinite alternate;}
-@keyframes kenburns{from{transform:scale(1.05)}to{transform:scale(1.15)}}
+.cover{aspect-ratio:2/3;padding:0;display:flex;flex-direction:column;justify-content:space-between;color:#f3efe8;text-align:center;position:relative;overflow:hidden;background:#0e0f10;}
+.cover .bg{position:absolute;inset:0;background-position:center;background-size:cover;background-repeat:no-repeat;animation:coverfade 3s ease both;}
+@keyframes coverfade{from{opacity:0}to{opacity:1}}
 .cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,12,.55) 0%,rgba(10,11,12,.15) 34%,rgba(10,11,12,.25) 60%,rgba(8,9,10,.82) 100%);}
 .cover .top,.cover .bottom{position:relative;z-index:2;}
 .cover .top{padding:50px 30px 0;}
@@ -167,7 +175,6 @@ section{padding:82px 30px;position:relative;}
 .cover .bottom{padding:0 30px 58px;}
 .cover .names{font-family:'Parisienne',cursive;font-size:46px;line-height:1.15;text-shadow:0 2px 22px rgba(0,0,0,.55);}
 .cover .kor{margin-top:14px;font-size:17px;letter-spacing:.5em;text-indent:.5em;font-weight:700;}
-.cover .place{margin-top:18px;font-size:13px;letter-spacing:.12em;opacity:.85;}
 .cover .scroll{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);z-index:2;width:1px;height:48px;background:rgba(255,255,255,.55);animation:scrollLine 2.4s ease-in-out infinite;}
 @keyframes scrollLine{0%{height:0;opacity:0}40%{height:48px;opacity:1}100%{height:48px;opacity:0;transform:translate(-50%,32px)}}
 
@@ -274,7 +281,6 @@ html,body{overflow-x:hidden;max-width:100%;}
 img{max-width:100%;}
 .page{width:100%;max-width:var(--maxw);}
 section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
-.cover{min-height:520px;}
 .cover .top{padding:clamp(38px,11vw,50px) clamp(20px,6.5vw,30px) 0;}
 .cover .bottom{padding:0 clamp(20px,6.5vw,30px) clamp(44px,13vw,58px);}
 .cover .date-tag{font-size:clamp(13px,3.8vw,15px);}
@@ -286,7 +292,8 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
 .cal .head{font-size:clamp(23px,7.4vw,29px);}
 .cal th,.cal td{font-size:clamp(13px,3.9vw,15px);}
 .cal td .mark{width:clamp(32px,9vw,38px);height:clamp(32px,9vw,38px);}
-.greet p,.account .lead{font-size:clamp(14px,4vw,15px);}
+.account .lead{font-size:clamp(14px,4vw,15px);}
+.greet p{font-size:clamp(15px,4.4vw,16.5px);}
 .acc-head{font-size:clamp(14px,4.3vw,16px);}
 </style>
 </head>
@@ -315,7 +322,6 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
     <div class="label" id="greet-label"></div>
     <div class="ttl" id="greet-title"></div>
     <p id="greet-top"></p>
-    <div class="divider"></div>
     <p id="greet-bottom"></p>
     <div class="pair">
       <div class="who"><div class="role" id="greet-groom-role"></div><div class="par" id="greet-groom-par"></div><div class="nm" id="greet-groom-name"></div></div>
@@ -502,11 +508,15 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
 
   /* 인사말 줄이 폭을 넘으면 폰트를 줄여, 기기와 상관없이 동일한 줄바꿈 유지 */
   function fitGreeting(){
-    document.querySelectorAll(".greet p").forEach((p)=>{
-      p.style.fontSize = "";
-      let fs = parseFloat(getComputedStyle(p).fontSize), guard = 0;
-      while (p.scrollWidth > p.clientWidth + 1 && fs > 9 && guard < 60){ fs -= 0.5; p.style.fontSize = fs + "px"; guard++; }
-    });
+    const ps = [...document.querySelectorAll(".greet p")];
+    const lines = [...document.querySelectorAll(".greet p .gline")];
+    ps.forEach((p)=>p.style.fontSize = "");
+    lines.forEach((l)=>l.style.whiteSpace = "nowrap");
+    if (!ps.length) return;
+    let fs = parseFloat(getComputedStyle(ps[0]).fontSize), guard = 0;
+    const overflow = () => ps.some((p)=>p.scrollWidth > p.clientWidth + 1);
+    while (overflow() && fs > 13.5 && guard < 60){ fs -= 0.5; ps.forEach((p)=>p.style.fontSize = fs + "px"); guard++; }
+    if (overflow()) lines.forEach((l)=>l.style.whiteSpace = "normal");  /* 그래도 넘치면 접어 자름 방지 */
   }
   fitGreeting();
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitGreeting);
