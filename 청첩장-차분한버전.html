@@ -66,7 +66,7 @@ const CONFIG = {
         desc:"따스한 빛이 내려앉은 숲길을,\n서로를 바라보며 나란히 걸었습니다." },
       { no:"moment 03", title:"가장 가까이에서", image:"assets/journey/03.jpg",
         desc:"서로의 온기를 느끼며,\n마음을 나누었습니다." },
-      { no:"moment 04", title:"같은 바람 속에서", image:"assets/journey/04.jpg",
+      { no:"moment 04", title:"같이 바람 안에서", image:"assets/journey/04.jpg",
         desc:"잠시 눈을 감은 채 나란히,\n하늘과 바람을 마음에 담았습니다." },
       { no:"moment 05", title:"햇살에 물들어", image:"assets/journey/05.jpg",
         desc:"햇살 아래 마주 보며,\n오늘을 오래 기억하기로 했습니다." },
@@ -157,8 +157,19 @@ const CONFIG = {
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
 body{background:#0e0f10;color:var(--ink);font-family:'Gowun Batang','Nanum Myeongjo',serif;line-height:1.9;letter-spacing:.01em;-webkit-font-smoothing:antialiased;}
-.page{max-width:var(--maxw);margin:0 auto;background:var(--bg);overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,.6);position:relative;}
-section{padding:82px 30px;position:relative;}
+.page{max-width:var(--maxw);margin:0 auto;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,.6);position:relative;
+  background:
+    radial-gradient(120% 55% at 12% 2%, rgba(180,147,126,.11), transparent 60%),
+    radial-gradient(95% 48% at 100% 38%, rgba(143,166,179,.06), transparent 55%),
+    radial-gradient(110% 55% at 0% 82%, rgba(194,153,143,.08), transparent 60%),
+    linear-gradient(180deg,#1b1d20 0%,#212327 46%,#191a1d 100%);}
+/* 미세 그레인 텍스처 — 단색 밋밋함 제거, 필름 질감 */
+.page::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.05;mix-blend-mode:soft-light;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+section{padding:82px 30px;position:relative;z-index:1;}
+/* 섹션 사이 은은한 금빛 헤어라인 */
+.page > section + section::before,.page > footer::before{content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);width:64%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(180,147,126,.35),transparent);}
 
 .reveal{opacity:0;transform:translateY(28px);transition:opacity 1.3s ease,transform 1.3s ease;}
 .reveal.in{opacity:1;transform:none;}
@@ -179,7 +190,7 @@ section{padding:82px 30px;position:relative;}
 @keyframes scrollLine{0%{height:0;opacity:0}40%{height:48px;opacity:1}100%{height:48px;opacity:0;transform:translate(-50%,32px)}}
 
 /* 인사 */
-.greet{text-align:center;background:var(--bg);}
+.greet{text-align:center;background:transparent;}
 .label{font-family:'Cormorant Garamond',serif;letter-spacing:.42em;text-indent:.42em;font-size:13px;color:var(--accent);font-weight:500;}
 .ttl{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:26px;line-height:1.55;color:var(--ink);margin:18px 0 28px;}
 .divider{width:36px;height:1px;background:var(--accent-soft);margin:32px auto;}
@@ -194,7 +205,7 @@ section{padding:82px 30px;position:relative;}
 .pair .amp{font-family:'Parisienne',cursive;font-size:30px;color:var(--accent-soft);align-self:center;}
 
 /* 여정 */
-.journey{background:var(--bg-soft);text-align:center;}
+.journey{background:rgba(255,255,255,.022);text-align:center;}
 .journey .intro p{font-size:14px;color:var(--ink-soft);word-break:keep-all;margin-top:14px;}
 .journey .step{margin-top:58px;}
 .journey .step .no{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:.18em;color:var(--accent);}
@@ -205,7 +216,7 @@ section{padding:82px 30px;position:relative;}
 .journey .step p{font-size:14.5px;color:var(--ink-soft);margin-top:20px;line-height:2.05;word-break:keep-all;}
 
 /* 갤러리 */
-.gallery{background:var(--bg);text-align:center;}
+.gallery{background:transparent;text-align:center;}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:36px;}
 .grid .frame img{transition:transform .9s ease;cursor:zoom-in;}
 .grid .frame:active img{transform:scale(1.06);}
@@ -228,7 +239,7 @@ section{padding:82px 30px;position:relative;}
   color:#f4ede2;font-family:'Cormorant Garamond',serif;letter-spacing:.2em;font-size:13px;opacity:.8;}
 
 /* 달력 */
-.cal{background:var(--bg-soft);}
+.cal{background:rgba(255,255,255,.022);}
 .cal .head{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:29px;line-height:1.4;color:var(--accent);}
 .cal table{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:32px;border-top:1px solid var(--accent-soft);border-bottom:1px solid var(--accent-soft);}
 .cal th,.cal td{width:14.2857%;text-align:center;padding:11px 0;font-size:15px;color:var(--ink);}
@@ -241,7 +252,7 @@ section{padding:82px 30px;position:relative;}
 .cal .dday b{color:var(--accent);font-weight:700;}
 
 /* 계좌 */
-.account{background:var(--bg);text-align:center;}
+.account{background:transparent;text-align:center;}
 .account .lead{font-size:15px;color:var(--ink-soft);line-height:2.15;word-break:keep-all;}
 .toggle{margin-top:22px;}
 .acc-item{border:1px solid var(--line);border-radius:12px;background:var(--panel);margin-top:12px;overflow:hidden;text-align:left;}
@@ -261,7 +272,7 @@ section{padding:82px 30px;position:relative;}
 .copy:active{background:var(--accent);color:#1d1f22;border-color:var(--accent);}
 
 /* footer */
-.foot{position:relative;overflow:hidden;background:var(--bg-soft);text-align:center;padding:120px 30px 260px;min-height:760px;}
+.foot{position:relative;overflow:hidden;background:rgba(255,255,255,.02);text-align:center;padding:120px 30px 260px;min-height:760px;}
 /* 마무리 사진 — 너비 꽉 채우고 위아래로 어둠에 스며들게 */
 .foot .end-bg{position:absolute;inset:0;background-size:cover;background-position:center 40%;background-repeat:no-repeat;opacity:.20;
   -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 22%,#000 78%,transparent 100%);
