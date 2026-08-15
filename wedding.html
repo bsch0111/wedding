@@ -353,15 +353,6 @@ img{max-width:100%;}
     <div class="grid reveal" id="gallery-grid"></div>
   </section>
 
-  <!-- 달력 -->
-  <section class="cal">
-    <div class="reveal">
-      <div class="head" id="cal-head"></div>
-      <table id="cal-table"></table>
-      <div class="dday" id="cal-dday"></div>
-    </div>
-  </section>
-
   <!-- 계좌 -->
   <section class="account">
     <div class="reveal">
@@ -445,36 +436,6 @@ img{max-width:100%;}
   $("gallery-title").textContent = ga.title;
   $("gallery-grid").innerHTML = ga.images.map((src, i) =>
     `<div class="frame${(i === 0 || i === ga.images.length - 1) ? " span2" : ""}"><img src="${src}" alt="갤러리 ${i + 1}" loading="lazy" onclick="openLightbox(${i})" /></div>`).join("");
-
-  const cal = C.calendar;
-  $("cal-head").innerHTML = nl(cal.headline);
-  buildCalendar(cal);
-  const weekday = ["일","월","화","수","목","금","토"][new Date(cal.year, cal.month - 1, cal.highlightDay).getDay()];
-  $("cal-dday").innerHTML = `${cal.year}. ${String(cal.month).padStart(2,"0")}. ${String(cal.highlightDay).padStart(2,"0")} <b>·</b> ${cal.footnote || weekday}`;
-
-  function buildCalendar(cal) {
-    const first = new Date(cal.year, cal.month - 1, 1).getDay();
-    const days = new Date(cal.year, cal.month, 0).getDate();
-    let html = "<tr>" + ["일","월","화","수","목","금","토"].map((d,i)=>`<th class="${i===0?"sun":""}">${d}</th>`).join("") + "</tr>";
-    let cells = [];
-    for (let i=0;i<first;i++) cells.push("");
-    for (let d=1;d<=days;d++) cells.push(d);
-    while (cells.length % 7 !== 0) cells.push("");
-    for (let w=0; w<cells.length/7; w++){
-      html += "<tr>";
-      for (let i=0;i<7;i++){
-        const d = cells[w*7+i];
-        const sun = i===0 ? " sun" : "";
-        if (d === cal.highlightDay){
-          html += `<td class="day${sun}"><span class="mark">${d}</span>${cal.timeLabel?`<span class="time">${cal.timeLabel}</span>`:""}</td>`;
-        } else {
-          html += `<td class="${sun.trim()}">${d}</td>`;
-        }
-      }
-      html += "</tr>";
-    }
-    $("cal-table").innerHTML = html;
-  }
 
   const a = C.account;
   $("acc-label").textContent = a.label;
