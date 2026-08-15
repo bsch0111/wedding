@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no" />
 <meta name="robots" content="noindex, nofollow" />
 <title>백승찬 · 임유빈 결혼 안내</title>
 <!-- 카카오톡/링크 미리보기 (Open Graph) — 크롤러는 JS를 실행하지 않으므로 정적으로 명시 -->
@@ -45,7 +46,7 @@ const CONFIG = {
   /* 인사말 (줄바꿈은 \n) */
   greeting: {
     label: "GREETINGS",
-    title: "안녕하세요,\n 백승찬 ・ 임유빈 입니다.",
+    title: "안녕하세요,\n백승찬 · 임유빈입니다.",
     paragraphsTop:
       "다가오는 9월의 어느 날, 저희 두 사람\n소중한 부부의 인연을 시작하려고 합니다.\n\n눈부신 순간보다 평범한 날들을 채워가고 싶은 저희는\n양가 가족들과 조용하고 따뜻한 예식을 올리려 합니다.\n",
     paragraphsBottom:
@@ -81,25 +82,21 @@ const CONFIG = {
     title: "우리의 순간들",
     images: [
       "assets/gallery/01.jpg",
-      "assets/gallery/02.jpg",
+      "assets/gallery/08.jpg",
       "assets/gallery/03.jpg",
-      "assets/gallery/04.jpg",
-      "assets/gallery/05.jpg",
       "assets/gallery/06.jpg",
       "assets/gallery/07.jpg",
-      "assets/gallery/08.jpg",
-      "assets/gallery/09.jpg",
-      "assets/gallery/10.jpg",
+      "assets/gallery/02.jpg",
+      "assets/gallery/05.jpg",
       "assets/gallery/11.jpg",
+      "assets/gallery/10.jpg",
       "assets/gallery/12.jpg",
-      "assets/gallery/13.jpg",
       "assets/gallery/14.jpg",
       "assets/gallery/15.jpg",
       "assets/gallery/16.jpg",
-      "assets/gallery/17.jpg",
       "assets/gallery/18.jpg",
-      "assets/gallery/19.jpg",
       "assets/gallery/20.jpg",
+      "assets/gallery/19.jpg",
       "assets/gallery/21.jpg",
       "assets/gallery/22-last.jpg",
     ],
@@ -116,15 +113,16 @@ const CONFIG = {
   account: {
     label: "GIFT",
     title: "마음 전하실 곳",
-    lead: "축하해 주시는 마음만으로도\n저희에겐 큰 선물입니다.\n마음을 전하고 싶으신 분들을 위해\n아래 계좌를 남겨 둡니다.",
+    lead: "저희 두 사람의 시작을 따뜻하게\n바라봐 주시는 것만으로도 더없이 큰 행복입니다.\n\n혹시 마음을 전하고 싶으신 분들을 위해\n조심스럽게 아래에 남겨둡니다.",
     groups: [
       { side:"groom", label:"신랑측", members:[
         { rel:"신랑", name:"백승찬", bank:"국민은행", number:"464402-04-204455" },
         { rel:"신랑 아버지", name:"백영현", bank:"국민은행", number:"610901-01-174524" },
       ]},
       { side:"bride", label:"신부측", members:[
-        { rel:"신부", name:"임유빈", bank:"국민은행", number:"010-4546-5055" },
-        { rel:"신부 아버지", name:"임진수", bank:"국민은행", number:"010-4546-5055" },
+        { rel:"신부", name:"임유빈", bank:"국민은행", number:"457002-01-339019" },
+        { rel:"신부 아버지", name:"임진수", bank:"우리은행", number:"414-026571-02-001" },
+        { rel:"신부 어머니", name:"최은화", bank:"국민은행", number:"816-21-0176-718" }
       ]},
     ],
   },
@@ -133,7 +131,7 @@ const CONFIG = {
   footer: {
     image: "assets/ending/01.jpg",   // 마무리 사진 (비우면 "" 로)
     namesEng: "Thank You",
-    thanks: "저희의 시작을 함께해 주셔서\n진심으로 감사합니다.",
+    thanks: "저희의 시작에 함께해 주셔서\n진심으로 감사합니다.",
     date: "SEUNGCHAN & YUBIN",
     date2: "2026.09.21",
   },
@@ -176,10 +174,9 @@ section{padding:82px 30px;position:relative;z-index:1;}
 .reveal.in{opacity:1;transform:none;}
 
 /* 표지 */
-.cover{height:100svh;min-height:600px;padding:0;display:flex;flex-direction:column;justify-content:space-between;color:#f3efe8;text-align:center;position:relative;overflow:hidden;background:#0e0f10;}
-.cover .bg{position:absolute;inset:0;background-position:68% 42%;background-size:cover;background-repeat:no-repeat;animation:coverfade 3s ease both;}
-@keyframes coverfade{from{opacity:0}to{opacity:1}}
-.cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,12,.55) 0%,rgba(10,11,12,.15) 34%,rgba(10,11,12,.25) 60%,rgba(8,9,10,.82) 100%);}
+.cover{height:844px;padding:0;display:flex;flex-direction:column;justify-content:space-between;color:#f3efe8;text-align:center;position:relative;overflow:hidden;background:#0e0f10;}
+.cover .bg{position:absolute;inset:0;background-position:68% 50%;background-size:cover;background-repeat:no-repeat;}
+.cover .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,12,.5) 0%,rgba(10,11,12,.1) 34%,rgba(10,11,12,.15) 60%,rgba(8,9,10,.68) 100%);}
 .cover .top,.cover .bottom{position:relative;z-index:2;}
 .cover .top{padding:50px 30px 0;}
 .cover .date-tag{font-family:'Cormorant Garamond',serif;letter-spacing:.46em;text-indent:.46em;font-size:15px;font-weight:500;opacity:.95;}
@@ -195,7 +192,7 @@ section{padding:82px 30px;position:relative;z-index:1;}
 .label{font-family:'Cormorant Garamond',serif;letter-spacing:.42em;text-indent:.42em;font-size:13px;color:var(--accent);font-weight:500;}
 .ttl{font-family:'Nanum Myeongjo',serif;font-weight:700;font-size:26px;line-height:1.55;color:var(--ink);margin:18px 0 28px;}
 .divider{width:36px;height:1px;background:var(--accent-soft);margin:32px auto;}
-.greet p{font-size:15px;color:var(--ink-soft);line-height:2.2;word-break:keep-all;}
+.greet p{font-size:13.5px;color:var(--ink-soft);line-height:1.95;word-break:keep-all;}
 .greet p .gline{display:block;white-space:nowrap;}
 .pair{display:flex;justify-content:center;gap:36px;margin-top:42px;}
 .pair{gap:28px;}
@@ -212,21 +209,19 @@ section{padding:82px 30px;position:relative;z-index:1;}
 .journey .step .no{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:15px;letter-spacing:.18em;color:var(--accent);}
 .journey .step h3{font-family:'Nanum Myeongjo',serif;font-size:19px;font-weight:700;margin:7px 0 20px;color:var(--ink);}
 .frame{position:relative;border-radius:3px;overflow:hidden;box-shadow:0 22px 46px -24px rgba(0,0,0,.8);}
-.frame img{width:100%;display:block;transition:transform 7s ease;}
-.frame.in img{transform:scale(1.07);}
+.frame img{width:100%;display:block;}
 .journey .step p{font-size:14.5px;color:var(--ink-soft);margin-top:20px;line-height:2.05;word-break:keep-all;}
 
 /* 갤러리 */
 .gallery{background:transparent;text-align:center;}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:36px;}
-.grid .frame img{transition:transform .9s ease;cursor:zoom-in;}
-.grid .frame:active img{transform:scale(1.06);}
+.grid .frame img{cursor:zoom-in;}
 .grid .span2{grid-column:span 2;}
 
 /* 라이트박스 */
 .lb{position:fixed;inset:0;z-index:200;display:none;flex-direction:column;background:rgba(20,18,17,.94);}
 .lb.open{display:flex;}
-.lb img{flex:1;min-height:0;max-width:92vw;object-fit:contain;object-position:center top;border-radius:4px;margin:38px auto 14px;
+.lb img{flex:1;min-height:0;max-width:92vw;object-fit:contain;object-position:center center;border-radius:4px;margin:38px auto 14px;
   box-shadow:0 30px 80px -30px rgba(0,0,0,.8);user-select:none;-webkit-user-drag:none;touch-action:pan-y;}
 .lb .lb-close{position:absolute;top:16px;right:18px;width:44px;height:44px;border:none;z-index:3;
   background:none;color:#f4ede2;font-size:30px;line-height:1;cursor:pointer;opacity:.85;}
@@ -298,25 +293,12 @@ section{padding:82px 30px;position:relative;z-index:1;}
 .toast{position:fixed;left:50%;bottom:42px;transform:translate(-50%,20px);background:rgba(233,228,220,.96);color:#1d1f22;font-size:13px;padding:11px 20px;border-radius:24px;opacity:0;pointer-events:none;transition:all .3s ease;z-index:99;letter-spacing:.03em;font-weight:700;}
 .toast.show{opacity:1;transform:translate(-50%,0);}
 
-/* ===== 반응형: 화면 폭에 맞춰 유동 스케일 ===== */
+/* ===== 모든 기기 동일: 430px 고정 디자인 → 화면 폭에 맞춰 통째로 축소(비율·글자 크기 유지) ===== */
 html,body{overflow-x:hidden;max-width:100%;}
 img{max-width:100%;}
-.page{width:100%;max-width:var(--maxw);}
-section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
-.cover .top{padding:clamp(38px,11vw,50px) clamp(20px,6.5vw,30px) 0;}
-.cover .bottom{padding:0 clamp(20px,6.5vw,30px) clamp(44px,13vw,58px);}
-.cover .date-tag{font-size:clamp(13px,3.8vw,15px);}
-.cover .top .sub{font-size:clamp(10.5px,3vw,12px);}
-.cover .names{font-size:clamp(33px,11vw,46px);word-break:break-word;}
-.cover .kor{font-size:clamp(14px,4.4vw,17px);letter-spacing:.42em;text-indent:.42em;}
-.cover .place{font-size:clamp(11px,3.3vw,13px);}
-.ttl{font-size:clamp(21px,6.2vw,26px);}
-.cal .head{font-size:clamp(23px,7.4vw,29px);}
-.cal th,.cal td{font-size:clamp(13px,3.9vw,15px);}
-.cal td .mark{width:clamp(32px,9vw,38px);height:clamp(32px,9vw,38px);}
-.account .lead{font-size:clamp(14px,4vw,15px);}
-.greet p{font-size:clamp(15px,4.4vw,16.5px);}
-.acc-head{font-size:clamp(14px,4.3vw,16px);}
+.page{width:430px;max-width:430px;transform-origin:top left;}
+.cover .names{word-break:break-word;}
+.greet p{font-size:13.5px;}
 </style>
 </head>
 <body>
@@ -541,9 +523,33 @@ section{padding:clamp(56px,14vw,82px) clamp(20px,6.5vw,30px);}
     while (overflow() && fs > 13.5 && guard < 60){ fs -= 0.5; ps.forEach((p)=>p.style.fontSize = fs + "px"); guard++; }
     if (overflow()) lines.forEach((l)=>l.style.whiteSpace = "normal");  /* 그래도 넘치면 접어 자름 방지 */
   }
-  fitGreeting();
-  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitGreeting);
-  let rt; window.addEventListener("resize", ()=>{ clearTimeout(rt); rt = setTimeout(fitGreeting, 120); });
+  /* 430px 고정 디자인을 화면 폭에 맞춰 통째로 축소 → 모든 기기에서 동일한 비율·글자 크기 */
+  function scalePage(){
+    const page = document.querySelector(".page");
+    if (!page) return;
+    const s = Math.min(1, window.innerWidth / 430);
+    /* 표지: 폰은 화면 꽉 채우고(전신 세로 다 보임), PC는 아이폰15 정도(932px)로 캡.
+       페이지가 s배 축소되므로 실제 목표높이를 s로 나눠 디자인 높이로 역산 */
+    const cover = page.querySelector(".cover");
+    if (cover){
+      const visual = Math.min(window.innerHeight, 932);
+      cover.style.height = (visual / s) + "px";
+    }
+    page.style.transform = s < 1 ? "scale(" + s + ")" : "";
+    page.style.marginBottom = s < 1 ? "-" + (page.offsetHeight * (1 - s)) + "px" : "";
+  }
+  function relayout(){ fitGreeting(); scalePage(); }
+  relayout();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(relayout);
+  window.addEventListener("load", relayout);
+  window.addEventListener("orientationchange", relayout);
+  let rt; window.addEventListener("resize", ()=>{ clearTimeout(rt); rt = setTimeout(relayout, 120); });
+  /* 지연 로딩 이미지가 뒤늦게 들어와 높이가 바뀌면 축소 여백 재계산 (margin은 offsetHeight에 영향 없어 무한루프 없음) */
+  if (window.ResizeObserver){
+    const ro = new ResizeObserver(()=>scalePage());
+    const pg = document.querySelector(".page");
+    if (pg) ro.observe(pg);
+  }
 })();
 
 /* 갤러리 라이트박스 */
