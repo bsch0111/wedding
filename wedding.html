@@ -485,16 +485,20 @@ img{max-width:100%;}
     if (overflow()) lines.forEach((l)=>l.style.whiteSpace = "normal");  /* 그래도 넘치면 접어 자름 방지 */
   }
   /* 430px 고정 디자인을 화면 폭에 맞춰 통째로 축소 → 모든 기기에서 동일한 비율·글자 크기 */
+  /* 표지 높이는 '폭이 바뀔 때(회전)'에만 다시 정함 — 스크롤 중 주소창으로 인한
+     innerHeight 변화는 무시해, 표지가 늘었다 줄었다(확대되는 것처럼) 하는 현상 방지 */
+  let coverW = -1, coverVisual = 0;
   function scalePage(){
     const page = document.querySelector(".page");
     if (!page) return;
     const s = Math.min(1, window.innerWidth / 430);
-    /* 표지: 폰은 화면 꽉 채우고(전신 세로 다 보임), PC는 아이폰15 정도(932px)로 캡.
-       페이지가 s배 축소되므로 실제 목표높이를 s로 나눠 디자인 높이로 역산 */
     const cover = page.querySelector(".cover");
     if (cover){
-      const visual = Math.min(window.innerHeight, 932);
-      cover.style.height = (visual / s) + "px";
+      if (window.innerWidth !== coverW){        // 폭(회전)이 바뀐 경우에만 목표 높이 갱신
+        coverW = window.innerWidth;
+        coverVisual = Math.min(window.innerHeight, 932);
+      }
+      cover.style.height = (coverVisual / s) + "px";
     }
     page.style.transform = s < 1 ? "scale(" + s + ")" : "";
     page.style.marginBottom = s < 1 ? "-" + (page.offsetHeight * (1 - s)) + "px" : "";
